@@ -83,7 +83,7 @@ const ChatPage = () => {
                     ref={inputRef}
                 />
                 <button className="sendButton" onClick={callApi}>
-                    <span className="sendButtonText">Enviar</span>
+                    <i className="fa fa-paper-plane"></i>
                 </button>
             </div>
             {loading && <LoadingSpinner />}
