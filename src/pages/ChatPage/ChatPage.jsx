@@ -64,9 +64,7 @@ const ChatPage = () => {
                             <strong>{userMessage.user}:</strong> {userMessage.input}
                         </p>
                         {conversation[index] && (
-                            <p className="responseText">
-                                <AnimatedResponse message={conversation[index].message} />
-                            </p>
+                            <AnimatedResponse message={conversation[index].message} />
                         )}
                     </React.Fragment>
                 ))}
