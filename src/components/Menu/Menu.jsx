@@ -7,10 +7,10 @@ const Menu = () => {
     <nav className='menuStyle'>
       <ul className='menuItems'> 
         <li className='menuItem'>
-          <Link className='menuLink' to="/sobre">Sobre</Link>
+          <Link className='menuLink' to="/about">Sobre</Link>
         </li>
         <li className='menuItem'>
-          <Link className='menuLink' to="/cadastro">Cadastro</Link>
+          <Link className='menuLink' to="/create-account">Cadastro</Link>
         </li>
         <li className='menuItem'>
           <Link className='menuLink' to="/login">Login</Link>

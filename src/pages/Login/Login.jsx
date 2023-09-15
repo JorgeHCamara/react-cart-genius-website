@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css'
 import logoImage from '../../assets/images/logo.jpeg';
@@ -68,7 +69,7 @@ const Login = () => {
         )}
         <p className="forgot-password">Esqueceu sua senha?</p>
         <p className="create-account">
-        Não tem uma conta? Crie uma <span className="hereLink">aqui</span>.
+        Não tem uma conta? <Link className='hereLink' to="/create-account">Crie uma aqui.</Link>
         </p>
     </div>
     );

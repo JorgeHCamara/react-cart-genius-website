@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './CreateAccount.css'
 
 const CreateAccount = () => {
   const [personType, setPersonType] = useState('');
@@ -92,7 +93,13 @@ const CreateAccount = () => {
             className="input"
             value={telefone}
             onChange={(e) => setTelefone(e.target.value)}
-            type="text"
+            maxLength={11}
+            onKeyPress={(event) => {
+                if (!/[0-9]/.test(event.key)) {
+                  event.preventDefault();
+                }
+              }
+            }
           />
           <label className="label">CPF</label>
           <input
@@ -140,7 +147,13 @@ const CreateAccount = () => {
             className="input"
             value={telefone}
             onChange={(e) => setTelefone(e.target.value)}
-            type="text"
+            maxLength={11}
+            onKeyPress={(event) => {
+                if (!/[0-9]/.test(event.key)) {
+                  event.preventDefault();
+                }
+              }
+            }
           />
           <label className="label">CNPJ</label>
           <input
@@ -167,7 +180,7 @@ const CreateAccount = () => {
         </>
       )}
       <button className="button" onClick={register}>
-        Criar conta
+        <span className='button-text'>Criar conta</span>
       </button>
     </div>
   );

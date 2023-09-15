@@ -75,6 +75,10 @@
     margin-top: 10px;
 }
 
+.hereLink {
+    color: #FFF;
+}
+
 /* Media Query for smaller screens (e.g., mobile devices) */
 @media (max-width: 768px) {
     .container {
