@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css'
 import logoImage from '../../assets/images/logo.jpeg';
@@ -10,6 +10,8 @@ const Login = () => {
     const [personType, setPersonType] = useState('');
     const [showInputs, setShowInputs] = useState(false);
 
+    const navigate = useNavigate();
+
     const choosePersonType = (type) => {
         setPersonType(type);
         setShowInputs(true);
@@ -19,16 +21,21 @@ const Login = () => {
         try {
           // Replace this with your API endpoint for web.
           // eslint-disable-next-line no-unused-vars
-          const response = await axios.post(`https://rm94377webapp.azurewebsites.net/${personType}/login`, {
+          const response = await axios.post(`http://localhost:8080/${personType}/login`, {
             email: email,
             senha: senha,
           });
+
+          console.log('Login realizado com sucesso!');
+
+          navigate('/user-page');
     
           // Handle the response data as needed.
     
         } catch (error) {
           // Handle login error.
           console.error('Error logging in:', error);
+          console.log('ERRO DE LOGIN');
         }
       };
 

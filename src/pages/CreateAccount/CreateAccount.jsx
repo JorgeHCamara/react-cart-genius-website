@@ -27,7 +27,7 @@ const CreateAccount = () => {
   }, [email, telefone, emailTouched]);
 
   const register = async () => {
-    let url = `https://rm94377webapp.azurewebsites.net/${personType}/`;
+    let url = `http://localhost:8080/${personType}/`;
     let data;
 
     if (personType === 'clientes') {
