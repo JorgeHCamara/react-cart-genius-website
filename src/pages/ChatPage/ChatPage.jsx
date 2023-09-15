@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './ChatPage.css'; // Import your CSS file
 import axios from 'axios'; // Import Axios or use fetch for API requests
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
+import AnimatedResponse from '../../components/LoadingSpinner/widgets/AnimatedResponse';
 
 const ChatPage = () => {
     const [userInput, setUserInput] = useState('');
@@ -60,7 +61,7 @@ const ChatPage = () => {
                         </p>
                         {conversation[index] && (
                             <p className="responseText">
-                                <strong>{conversation[index].speaker}:</strong> {conversation[index].message}
+                                <AnimatedResponse message={conversation[index].message} />
                             </p>
                         )}
                     </React.Fragment>
