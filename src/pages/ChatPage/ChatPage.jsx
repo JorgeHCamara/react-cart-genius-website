@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import './ChatPage.css'; // Import your CSS file
 import axios from 'axios'; // Import Axios or use fetch for API requests
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const ChatPage = () => {
     const [userInput, setUserInput] = useState('');
     const [responses, setResponses] = useState([]);
     const [userConversation, setUserConversation] = useState([]);
     const [conversation, setConversation] = useState([]);
+    const [loading, setLoading] = useState(false); // Add a loading state
 
     const userMessage = { user: 'Cliente', input: userInput };
 
@@ -17,6 +19,8 @@ const ChatPage = () => {
 
         // Update the conversation state by appending the user's input
         setUserConversation([...userConversation, userMessage]);
+
+        setLoading(true); // Set loading to true while waiting for the API response
 
         try {
             const response = await axios.post('http://20.226.206.195:8000/query', {
@@ -38,6 +42,8 @@ const ChatPage = () => {
 
         } catch (error) {
             console.error('An error occurred while accessing the API:', error);
+        } finally {
+            setLoading(false); // Set loading back to false after the API response
         }
     };
 
@@ -48,17 +54,17 @@ const ChatPage = () => {
                     <strong>Cart Genius:</strong> Olá, como posso te ajudar?
                 </p>
                 {userConversation.map((userMessage, index) => (
-                <React.Fragment key={index}>
-                    <p className="responseText">
-                        <strong>{userMessage.user}:</strong> {userMessage.input}
-                    </p>
-                    {conversation[index] && (
+                    <React.Fragment key={index}>
                         <p className="responseText">
-                            <strong>{conversation[index].speaker}:</strong> {conversation[index].message}
+                            <strong>{userMessage.user}:</strong> {userMessage.input}
                         </p>
-                    )}
-                </React.Fragment>
-            ))}
+                        {conversation[index] && (
+                            <p className="responseText">
+                                <strong>{conversation[index].speaker}:</strong> {conversation[index].message}
+                            </p>
+                        )}
+                    </React.Fragment>
+                ))}
             </div>
             <div className="inputContainer">
                 <input
@@ -68,9 +74,10 @@ const ChatPage = () => {
                     onChange={(e) => setUserInput(e.target.value)}
                 />
                 <button className="sendButton" onClick={callApi}>
-                   <span className="sendButtonText">Enviar</span>
+                    <span className="sendButtonText">Enviar</span>
                 </button>
             </div>
+            {loading && <LoadingSpinner />} {/* Display the loading spinner while loading */}
         </div>
     );
 };
