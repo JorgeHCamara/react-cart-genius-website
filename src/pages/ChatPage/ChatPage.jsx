@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './ChatPage.css'; // Import your CSS file
 import axios from 'axios'; // Import Axios or use fetch for API requests
 
 const ChatPage = () => {
     const [userInput, setUserInput] = useState('');
     const [responses, setResponses] = useState([]);
+    const [userConversation, setUserConversation] = useState([]);
     const [conversation, setConversation] = useState([]);
+
+    const userMessage = { user: 'Cliente', input: userInput };
 
     const callApi = async () => {
         console.log("User input:", userInput);
+
+        // Create message objects for user input and Cart Genius's response
+
+        // Update the conversation state by appending the user's input
+        setUserConversation([...userConversation, userMessage]);
 
         try {
             const response = await axios.post('http://20.226.206.195:8000/query', {
@@ -17,14 +25,15 @@ const ChatPage = () => {
 
             console.log("Data received from API:", response.data);
 
-            setConversation([
-                ...conversation,
-                { speaker: 'Cliente', message: userInput },
-                { speaker: 'Cart Genius', message: response.data.response },
-              ]);
+            // Create a message object for Cart Genius's response
+            const geniusMessage = { speaker: 'Cart Genius', message: response.data.response };
+
+            // Append Cart Genius's response to the conversation
+            setConversation([...conversation, geniusMessage]);
 
             setResponses([...responses, response.data.response]);
 
+            // Clear the user input after a successful API response
             setUserInput('');
 
         } catch (error) {
@@ -38,10 +47,17 @@ const ChatPage = () => {
                 <p className="responseText">
                     <strong>Cart Genius:</strong> Olá, como posso te ajudar?
                 </p>
-                {conversation.map((item, index) => (
-                    <p className="responseText" key={index}>
-                    <strong>{item.speaker}:</strong> {item.message}
-                </p>
+                {userConversation.map((userMessage, index) => (
+                <React.Fragment key={index}>
+                    <p className="responseText">
+                        <strong>{userMessage.user}:</strong> {userMessage.input}
+                    </p>
+                    {conversation[index] && (
+                        <p className="responseText">
+                            <strong>{conversation[index].speaker}:</strong> {conversation[index].message}
+                        </p>
+                    )}
+                </React.Fragment>
             ))}
             </div>
             <div className="inputContainer">
