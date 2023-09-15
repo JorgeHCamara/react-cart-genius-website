@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './GlobalStyles.css'
 import Login from './pages/Login/Login';
+import CreateAccount from './pages/CreateAccount/CreateAccount';
 
 // Importe seus componentes de página
 // import HomePage from './pages/HomePage';
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/create-account" element={<CreateAccount />} />
       </Routes>
     </Router>
   );
