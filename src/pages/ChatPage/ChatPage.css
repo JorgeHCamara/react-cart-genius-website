@@ -2,7 +2,7 @@
 
 .firstView {
     padding-top: 40px;
-    max-height: 700px;
+    max-height: 500px;
     overflow-y: auto;
 }
   
@@ -27,13 +27,16 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 60%;
+    margin-bottom: 60px;
 }
 
 .input-chat {
     height: 40px;
     width: 100%;
-    border: 1px solid gray;
+    border: none;
     margin-right: 10px;
     padding-left: 8px;
     padding-right: 8px;
