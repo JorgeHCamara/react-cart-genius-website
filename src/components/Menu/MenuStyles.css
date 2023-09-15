@@ -1,6 +1,9 @@
 .menuStyle {
     color: white;
-    padding: 30px 0;
+    padding: 20px 0;
+    background-color: #190C2A; /* Add a background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
 }
 
 .menuItems {
@@ -11,32 +14,39 @@
 }
 
 .menuItem {
-    margin: 0 40px;
+    margin: 0 30px;
 }
 
 .menuLink {
     text-decoration: none;
-    color: #fff;
-    font-size: 24px;
+    color: #e2e2e2;
+    font-size: 20px;
 }
 
 .menuLink:hover {
-    color: #a1a1a1;
-    transition: 0.5s;
+    color: #fff;
+    transition: 0.3s;
+    font-weight: bold;
 }
 
 .menuLink:focus {
-    color: #a1a1a1;
+    color: #fff;
+    font-weight: bold;
+    outline: none;
 }
 
 /* Media Query for smaller screens (e.g., mobile devices) */
 @media (max-width: 768px) {
     .menuItems {
-        padding: 0; /* Remove padding */
+        padding: 0;
     }
 
     .menuItem {
-        margin: 10px 25px; /* Adjust margin for mobile spacing */
+        margin: 10px 35px; /* Adjust margin for mobile spacing */
         text-align: center; /* Center-align menu items */
+    }
+
+    .menuLink {
+        font-size: 18px; /* Reduce font size further for mobile */
     }
 }
