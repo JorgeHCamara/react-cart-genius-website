@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import './ChatPage.css'; // Import your CSS file
-import axios from 'axios'; // Import Axios or use fetch for API requests
+import React, { useState, useRef } from 'react';
+import './ChatPage.css';
+import axios from 'axios';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import AnimatedResponse from '../../components/LoadingSpinner/widgets/AnimatedResponse';
 
@@ -9,19 +9,21 @@ const ChatPage = () => {
     const [responses, setResponses] = useState([]);
     const [userConversation, setUserConversation] = useState([]);
     const [conversation, setConversation] = useState([]);
-    const [loading, setLoading] = useState(false); // Add a loading state
+    const [loading, setLoading] = useState(false);
+
+    const inputRef = useRef(null);
 
     const userMessage = { user: 'Cliente', input: userInput };
 
     const callApi = async () => {
         console.log("User input:", userInput);
 
-        // Create message objects for user input and Cart Genius's response
-
         // Update the conversation state by appending the user's input
         setUserConversation([...userConversation, userMessage]);
 
-        setLoading(true); // Set loading to true while waiting for the API response
+        setLoading(true);
+
+        setUserInput('');
 
         try {
             const response = await axios.post('http://20.226.206.195:8000/query', {
@@ -30,21 +32,23 @@ const ChatPage = () => {
 
             console.log("Data received from API:", response.data);
 
-            // Create a message object for Cart Genius's response
             const geniusMessage = { speaker: 'Cart Genius', message: response.data.response };
 
-            // Append Cart Genius's response to the conversation
             setConversation([...conversation, geniusMessage]);
 
             setResponses([...responses, response.data.response]);
-
-            // Clear the user input after a successful API response
-            setUserInput('');
 
         } catch (error) {
             console.error('An error occurred while accessing the API:', error);
         } finally {
             setLoading(false); // Set loading back to false after the API response
+            focusInput(); // Focus on the input field after submitting
+        }
+    };
+
+    const focusInput = () => {
+        if (inputRef.current) {
+            inputRef.current.focus();
         }
     };
 
@@ -73,12 +77,18 @@ const ChatPage = () => {
                     type="text"
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
+                    onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                            callApi();
+                        }
+                    }}
+                    ref={inputRef}
                 />
                 <button className="sendButton" onClick={callApi}>
                     <span className="sendButtonText">Enviar</span>
                 </button>
             </div>
-            {loading && <LoadingSpinner />} {/* Display the loading spinner while loading */}
+            {loading && <LoadingSpinner />}
         </div>
     );
 };
