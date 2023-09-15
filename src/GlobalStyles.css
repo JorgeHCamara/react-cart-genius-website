@@ -1,0 +1,32 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(to bottom, #190C2A , #822760 );
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Roboto', sans-serif;
+}
+
+@media (max-width: 767px) {
+    body {
+        height: 900px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1300px) {
+    body {
+        height: 1050px;
+        /* Your additional styles for screens between 600px and 1000px */
+    }
+}
+
+@media (min-width: 1301px) and (max-width: 1600px) {
+    body {
+        height: 900px;
+    }
+}

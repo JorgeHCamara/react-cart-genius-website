@@ -1,0 +1,42 @@
+.menuStyle {
+    color: white;
+    padding: 30px 0;
+}
+
+.menuItems {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuItem {
+    margin: 0 40px;
+}
+
+.menuLink {
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+}
+
+.menuLink:hover {
+    color: #a1a1a1;
+    transition: 0.5s;
+}
+
+.menuLink:focus {
+    color: #a1a1a1;
+}
+
+/* Media Query for smaller screens (e.g., mobile devices) */
+@media (max-width: 768px) {
+    .menuItems {
+        padding: 0; /* Remove padding */
+    }
+
+    .menuItem {
+        margin: 10px 25px; /* Adjust margin for mobile spacing */
+        text-align: center; /* Center-align menu items */
+    }
+}
