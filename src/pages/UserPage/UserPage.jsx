@@ -9,7 +9,7 @@ const UserPage = () => {
         <img src={logoImage} alt="Logo" className="logo" />
         <h1 className="title">Cart Genius</h1>
         <button className="button">
-            <Link className='button-text' to="/">Fazer pedido</Link>
+            <Link className='button-text' to="/chat">Fazer pedido</Link>
         </button>
     </div>
     );

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css'
 import logoImage from '../../assets/images/logo.jpeg';
@@ -10,7 +10,7 @@ const Login = () => {
     const [personType, setPersonType] = useState('');
     const [showInputs, setShowInputs] = useState(false);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const choosePersonType = (type) => {
         setPersonType(type);
@@ -28,7 +28,7 @@ const Login = () => {
 
           console.log('Login realizado com sucesso!');
 
-          navigate('/user-page');
+          // navigate('/user-page');
     
           // Handle the response data as needed.
     
@@ -70,7 +70,7 @@ const Login = () => {
             onChange={(e) => setSenha(e.target.value)}
             />
             <button className="button" onClick={login}>
-            <span className='button-text'>Entrar</span>
+            <Link to='/user-page' className='button-text'>Entrar</Link>
             </button>
         </>
         )}

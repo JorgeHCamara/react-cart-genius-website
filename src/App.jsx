@@ -4,6 +4,7 @@ import './GlobalStyles.css'
 import Login from './pages/Login/Login';
 import CreateAccount from './pages/CreateAccount/CreateAccount';
 import UserPage from './pages/UserPage/UserPage';
+import ChatPage from './pages/ChatPage/ChatPage';
 
 // Importe seus componentes de página
 // import HomePage from './pages/HomePage';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/user-page" element={<UserPage />} />
+        <Route path="/chat" element={<ChatPage />} />
       </Routes>
     </Router>
   );

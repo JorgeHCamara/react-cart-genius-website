@@ -1,0 +1,53 @@
+/* ResponseScreen.css */
+
+.firstView {
+    padding-top: 40px;
+    max-height: 700px;
+    overflow-y: auto;
+}
+  
+.container-chat {
+    flex: 1;
+    padding-top: 80px;
+    padding-bottom: 70px;
+    width: 60%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.responseText {
+    margin-bottom: 30px;
+    color: #FFF;
+    font-size: 16px;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.input-chat {
+    height: 40px;
+    width: 100%;
+    border: 1px solid gray;
+    margin-right: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: #FFF;
+}
+
+.sendButton {
+    background-color: #00072E;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.sendButtonText {
+    color: white;
+    font-weight: bold;
+}
+  
