@@ -12,9 +12,6 @@ const Menu = () => {
         <li className='menuItem'>
           <Link className='menuLink' to="/about">Sobre</Link>
         </li>
-        <li className='menuItem'>
-          <Link className='menuLink' to="/create-account">Cadastro</Link>
-        </li>
         {isLoggedIn ? (
           <li className='menuItem'>
             <Link className='menuLink' to="/user-page">Conta</Link>
@@ -24,6 +21,9 @@ const Menu = () => {
             <Link className='menuLink' to="/login">Login</Link>
           </li>
         )}
+        <li className='menuItem'>
+          <Link className='menuLink' to="/create-account">Cadastro</Link>
+        </li>
       </ul>
     </nav>
   );

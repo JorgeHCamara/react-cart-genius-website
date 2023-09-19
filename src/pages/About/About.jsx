@@ -3,10 +3,10 @@ import './About.css'
 
 const About = () => {
     return (
-        <div className="container">
+        <div className="containerAbout">
           <div className="gradient">
             <div className="contentContainer">
-              <h1 className="title">Sobre</h1>
+              <h1 className="titleAbout">Sobre</h1>
               <p className="aboutText">
                 O Cart Genius é uma aplicação que utiliza tecnologia de IA/Chatbot para auxiliar clientes de empresas a encontrar produtos de forma mais fácil e eficiente.
               </p>

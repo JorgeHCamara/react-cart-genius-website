@@ -1,4 +1,4 @@
-.container {
+.containerAbout {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +11,7 @@
     padding: 20px;
   }
   
-  .title {
+  .titleAbout {
     font-size: 50px;
     font-weight: bold;
     color: #FFFFFF;
