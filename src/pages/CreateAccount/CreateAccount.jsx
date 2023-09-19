@@ -27,7 +27,7 @@ const CreateAccount = () => {
   }, [email, telefone, emailTouched]);
 
   const register = async () => {
-    let url = `http://localhost:8080/${personType}/`;
+    let url = `https://rm94377webapp.azurewebsites.net/${personType}/`;
     let data;
 
     if (personType === 'clientes') {
@@ -52,10 +52,12 @@ const CreateAccount = () => {
 
     try {
       const response = await axios.post(url, data);
+      window.alert('Conta criada com sucesso!');
     } catch (error) {
       console.log(error.response.data);
       console.log(url);
       console.log(data);
+      window.alert('Deu algum problema ao criar a conta.');
     }
   };
 
@@ -107,6 +109,7 @@ const CreateAccount = () => {
             value={cpf}
             onChange={(e) => setCpf(e.target.value)}
             type="text"
+            maxLength={11}
           />
           <label className="label">E-mail</label>
           <input
@@ -161,6 +164,7 @@ const CreateAccount = () => {
             value={cnpj}
             onChange={(e) => setCnpj(e.target.value)}
             type="text"
+            maxLength={14}
           />
           <label className="label">E-mail</label>
           <input

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css'
 import logoImage from '../../assets/images/logo.jpeg';
@@ -9,8 +9,7 @@ const Login = () => {
     const [senha, setSenha] = useState('');
     const [personType, setPersonType] = useState('');
     const [showInputs, setShowInputs] = useState(false);
-
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const choosePersonType = (type) => {
         setPersonType(type);
@@ -21,16 +20,17 @@ const Login = () => {
         try {
           // Replace this with your API endpoint for web.
           // eslint-disable-next-line no-unused-vars
-          const response = await axios.post(`http://localhost:8080/${personType}/login`, {
+          const response = await axios.post(`https://rm94377webapp.azurewebsites.net/${personType}/login`, {
             email: email,
             senha: senha,
           });
 
           console.log('Login realizado com sucesso!');
 
-          // navigate('/user-page');
-    
-          // Handle the response data as needed.
+          const token = response.data.token; // Supondo que o token está na resposta do servidor
+          localStorage.setItem('token', token);
+
+          navigate('/user-page');
     
         } catch (error) {
           // Handle login error.
@@ -70,7 +70,7 @@ const Login = () => {
             onChange={(e) => setSenha(e.target.value)}
             />
             <button className="button" onClick={login}>
-            <Link to='/user-page' className='button-text'>Entrar</Link>
+            <span className='button-text'>Entrar</span>
             </button>
         </>
         )}

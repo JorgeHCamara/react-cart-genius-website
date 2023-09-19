@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 // import { MenuStyle, MenuItems, MenuItem, MenuLink } from './MenuStyles';
 import './MenuStyles.css'
+import { useAuth } from '../AuthContext/AuthContext';
 
 const Menu = () => {
+  const { isLoggedIn } = useAuth();
+
   return (
     <nav className='menuStyle'>
       <ul className='menuItems'> 
@@ -12,9 +15,15 @@ const Menu = () => {
         <li className='menuItem'>
           <Link className='menuLink' to="/create-account">Cadastro</Link>
         </li>
-        <li className='menuItem'>
-          <Link className='menuLink' to="/login">Login</Link>
-        </li>
+        {isLoggedIn ? (
+          <li className='menuItem'>
+            <Link className='menuLink' to="/user-page">Conta</Link>
+          </li>
+        ) : (
+          <li className='menuItem'>
+            <Link className='menuLink' to="/login">Login</Link>
+          </li>
+        )}
       </ul>
     </nav>
   );
