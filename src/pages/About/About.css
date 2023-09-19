@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 65%;
+  }
+  
+  .contentContainer {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 50px;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-top: 100px;
+    margin-bottom: 40px;
+  }
+  
+  .aboutText {
+    color: white;
+    margin-bottom: 20px;
+    text-align: justify;
+    font-size: 22px;
+  }
+  
+  .linkTextAbout {
+    background-color: transparent;
+    border: none;
+    color: white;
+    text-decoration: underline;
+    margin-bottom: 40px;
+    cursor: pointer;
+  }
+  
+  .creditsContainer {
+    align-items: center;
+    margin-top: 100px;
+  }
+  
+  .creditsTitle {
+    color: grey;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  .creditsText {
+    color: grey;
+    font-size: 20px;
+  }
