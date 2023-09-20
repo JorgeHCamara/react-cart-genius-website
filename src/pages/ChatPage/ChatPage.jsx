@@ -26,7 +26,7 @@ const ChatPage = () => {
         setUserInput('');
 
         try {
-            const response = await axios.post('http://rm94377dns.brazilsouth.azurecontainer.io:8000/query', {
+            const response = await axios.post('http://rm94377dns35.brazilsouth.azurecontainer.io:8000/query', {
                 query: userInput
             });
 
