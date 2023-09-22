@@ -76,7 +76,7 @@ const Login = () => {
         )}
         <p className="forgot-password">Esqueceu sua senha?</p>
         <p className="create-account">
-        Não tem uma conta? <Link className='hereLink' to="/create-account">Crie uma aqui.</Link>
+        Não tem uma conta? <Link className='hereLink' to="/create-account">Crie uma aqui</Link>.
         </p>
     </div>
     );

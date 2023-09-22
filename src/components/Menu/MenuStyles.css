@@ -21,6 +21,7 @@
     text-decoration: none;
     color: #e2e2e2;
     font-size: 20px;
+    padding: 5px 10px;
 }
 
 .menuLink:hover {
@@ -35,18 +36,33 @@
     outline: none;
 }
 
-/* Media Query for smaller screens (e.g., mobile devices) */
+/* Tablet */
 @media (max-width: 768px) {
     .menuItems {
         padding: 0;
     }
 
     .menuItem {
-        margin: 10px 35px; /* Adjust margin for mobile spacing */
-        text-align: center; /* Center-align menu items */
+        margin: 10px 20px;
+        text-align: center;
     }
 
     .menuLink {
-        font-size: 18px; /* Reduce font size further for mobile */
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menuItems {
+        flex-direction: column;
+    }
+
+    .menuItem {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .menuLink {
+        font-size: 18px;
     }
 }
