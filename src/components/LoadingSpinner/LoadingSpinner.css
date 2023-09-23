@@ -2,17 +2,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px; /* Adjust the height as needed */
+    height: 100px; 
     margin-left: 20px;
 }
 
 .loading-spinner {
     border: 4px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    border-top: 4px solid #3498db; /* Adjust the spinner color */
-    width: 30px; /* Adjust the width and height to change the spinner size */
+    border-top: 4px solid #3498db;
+    width: 30px; 
     height: 30px;
-    animation: spin 1s linear infinite; /* Animation for spinning */
+    animation: spin 1s linear infinite;
 }
 
 @keyframes spin {

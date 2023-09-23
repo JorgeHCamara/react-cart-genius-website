@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types'; // Import PropTypes
+import PropTypes from 'prop-types';
 
 const AnimatedResponse = ({ message }) => {
   const [displayedMessage, setDisplayedMessage] = useState('');

@@ -41,8 +41,8 @@ const ChatPage = () => {
         } catch (error) {
             console.error('An error occurred while accessing the API:', error);
         } finally {
-            setLoading(false); // Set loading back to false after the API response
-            focusInput(); // Focus on the input field after submitting
+            setLoading(false);
+            focusInput(); 
         }
     };
 
@@ -81,6 +81,7 @@ const ChatPage = () => {
                         }
                     }}
                     ref={inputRef}
+                    placeholder='Faça seu pedido'
                 />
                 <button className="sendButton" onClick={callApi}>
                     <i className="fa fa-paper-plane"></i>
