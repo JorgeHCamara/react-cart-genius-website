@@ -70,6 +70,12 @@ const CreateAccount = () => {
     window.location.href = '/login';
   };
 
+  const allFieldsFilled = () => {
+    const isEmailValid = !emailError;
+    const commonFields = nome && endereco && telefone && email && senha && isEmailValid;
+    return personType === 'clientes' ? commonFields && cpf : commonFields && cnpj;
+  };
+
   return (
     <div className="container">
       <label className="label">Tipo de Cadastro</label>
@@ -192,7 +198,7 @@ const CreateAccount = () => {
           />
         </>
       )}
-      <button className="button button-hover" onClick={register}>
+      <button className="button button-hover" onClick={register} disabled={!allFieldsFilled()}>
         <span className='button-text'>Criar conta</span>
       </button>
       <ReactModal
