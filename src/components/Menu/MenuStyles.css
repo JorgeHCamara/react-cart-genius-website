@@ -38,7 +38,8 @@
 }
 
 .hamburger-button {
-    font-size: 38px;
+    font-size: 50px;
+    font-weight: bold;
     background: none;
     border: none;
     cursor: pointer;
@@ -51,6 +52,10 @@
 @media (max-width: 480px) {
     .hamburger-button {
         display: block;
+    }
+
+    .menuStyle {
+        padding: 5px 0 10px 0;
     }
 
     .menuItems {
