@@ -18,19 +18,19 @@ const Menu = () => {
       </button>
       <ul className={`menuItems ${isMenuOpen ? 'open' : ''}`}> 
         <li className='menuItem'>
-          <Link className='menuLink' to="/about">Sobre</Link>
+          <Link className='menuLink' to="/about" onClick={toggleMenu}>Sobre</Link>
         </li>
         {isLoggedIn ? (
           <li className='menuItem'>
-            <Link className='menuLink' to="/user-page">Conta</Link>
+            <Link className='menuLink' to="/user-page" onClick={toggleMenu}>Conta</Link>
           </li>
         ) : (
           <li className='menuItem'>
-            <Link className='menuLink' to="/login">Login</Link>
+            <Link className='menuLink' to="/login" onClick={toggleMenu}>Login</Link>
           </li>
         )}
         <li className='menuItem'>
-          <Link className='menuLink' to="/create-account">Cadastro</Link>
+          <Link className='menuLink' to="/create-account" onClick={toggleMenu}>Cadastro</Link>
         </li>
       </ul>
     </nav>

@@ -4,6 +4,7 @@
     background-color: #190C2A; /* Add a background color */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
+    position: relative; 
 }
 
 .menuItems {
@@ -53,8 +54,14 @@
     }
 
     .menuItems {
+        position: absolute;
+        top: 100%; /* posiciona o menuItems logo abaixo do botão hamburger */
+        left: 0; /* alinha o menuItems à esquerda do menuStyle */
+        width: 100%;
         display: none;
         flex-direction: column;
+        background-color: #190C2A;
+        z-index: 1000;
     }
 
     .menuItems.open {
