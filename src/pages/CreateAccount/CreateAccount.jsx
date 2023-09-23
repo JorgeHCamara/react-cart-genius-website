@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ReactModal from 'react-modal';
 import './CreateAccount.css'
 
 const CreateAccount = () => {
@@ -17,9 +18,12 @@ const CreateAccount = () => {
   const [emailError, setEmailError] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   useEffect(() => {
     const emailRegex = /\S+@\S+\.\S+/;
     const validEmail = emailRegex.test(email);
+    
 
     if (emailTouched) {
       setEmailError(validEmail ? '' : 'Informe um e-mail válido.');
@@ -52,13 +56,18 @@ const CreateAccount = () => {
 
     try {
       const response = await axios.post(url, data);
-      window.alert('Conta criada com sucesso!');
+      setModalIsOpen(true);
     } catch (error) {
       console.log(error.response.data);
       console.log(url);
       console.log(data);
       window.alert('Deu algum problema ao criar a conta.');
     }
+  };
+
+  const continueToLogin = () => {
+    setModalIsOpen(false);
+    window.location.href = '/login';
   };
 
   return (
@@ -183,9 +192,27 @@ const CreateAccount = () => {
           />
         </>
       )}
-      <button className="button" onClick={register}>
+      <button className="button button-hover" onClick={register}>
         <span className='button-text'>Criar conta</span>
       </button>
+      <ReactModal
+        ariaHideApp={false}
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Cadastro realizado com sucesso!"
+        overlayClassName="modal-overlay"
+        className="modal-content"
+      >
+        <div className="modal-header">
+          Cadastro realizado com sucesso!
+        </div>
+        <div className="modal-body">
+          Seu cadastro foi realizado com sucesso. Clique em Continuar para ser redirecionado a página de login.
+        </div>
+        <div className="modal-footer">
+          <button className="button button-text button-hover" onClick={continueToLogin}>Continuar</button>
+        </div>
+      </ReactModal>
     </div>
   );
 };
