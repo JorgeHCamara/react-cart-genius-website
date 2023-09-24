@@ -32,7 +32,10 @@ const ChatPage = () => {
 
             console.log("Data received from API:", response.data);
 
-            const geniusMessage = { speaker: 'Cart Genius', message: response.data.response };
+            console.log('Response from API:', response.data.response);  // Log the response from the API
+            console.log('Is URL:', isUrl(response.data.response));
+
+            const geniusMessage = { speaker: 'Cart Genius', message: response.data.response, isImageUrl: isUrl(response.data.response) };
 
             setConversation([...conversation, geniusMessage]);
 
@@ -52,6 +55,15 @@ const ChatPage = () => {
         }
     };
 
+    function isUrl(str) {
+        try {
+            new URL(str);
+            return /\.(jpeg|jpg|gif|png)$/.test(str);
+        } catch (e) {
+            return false;
+        }
+    }
+
     return (
         <div className="container-chat">
             <div className="firstView">
@@ -64,7 +76,10 @@ const ChatPage = () => {
                             <strong>{userMessage.user}:</strong> {userMessage.input}
                         </p>
                         {conversation[index] && (
-                            <AnimatedResponse message={conversation[index].message} />
+                            <AnimatedResponse 
+                                message={conversation[index].message} 
+                                isImageUrl={conversation[index].isImageUrl}
+                            />
                         )}
                     </React.Fragment>
                 ))}
