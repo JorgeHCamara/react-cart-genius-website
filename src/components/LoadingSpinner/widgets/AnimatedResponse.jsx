@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const AnimatedResponse = ({ message, isImageUrl }) => {
+const AnimatedResponse = ({ message, isImageUrl, onImageClick }) => {
   const [displayedMessage, setDisplayedMessage] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -26,9 +26,14 @@ const AnimatedResponse = ({ message, isImageUrl }) => {
 
   return(
     <div className="responseText">
-      <strong>Cart Genius:</strong>
+      <strong>Cart Genius: </strong>
       {isImageUrl ? (
-        <img src={message} alt="Product" style={{ maxWidth: '100%', height: 'auto' }} />
+        <img 
+          src={message} 
+          alt="Imagem do Produto" 
+          style={{ maxWidth: '100%', height: 'auto', cursor: 'pointer' }} 
+          onClick={() => onImageClick(message)}
+        />
       ) : (
         <p>{displayedMessage}</p>
       )}
@@ -39,6 +44,7 @@ const AnimatedResponse = ({ message, isImageUrl }) => {
 AnimatedResponse.propTypes = {
     message: PropTypes.string.isRequired,
     isImageUrl: PropTypes.bool.isRequired,
+    onImageClick: PropTypes.func.isRequired,
   };
 
 export default AnimatedResponse;

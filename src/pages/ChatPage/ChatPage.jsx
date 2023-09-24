@@ -10,6 +10,7 @@ const ChatPage = () => {
     const [userConversation, setUserConversation] = useState([]);
     const [conversation, setConversation] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const inputRef = useRef(null);
 
@@ -79,6 +80,7 @@ const ChatPage = () => {
                             <AnimatedResponse 
                                 message={conversation[index].message} 
                                 isImageUrl={conversation[index].isImageUrl}
+                                onImageClick={image => setSelectedImage(image)}
                             />
                         )}
                     </React.Fragment>
@@ -103,6 +105,11 @@ const ChatPage = () => {
                 </button>
             </div>
             {loading && <LoadingSpinner />}
+            {selectedImage && (
+                <div className="modalProductImage" onClick={() => setSelectedImage(null)}>
+                    <img src={selectedImage} alt="Expanded Product" style={{ maxWidth: '100%', height: 'auto' }} />
+                </div>
+            )}
         </div>
     );
 };
