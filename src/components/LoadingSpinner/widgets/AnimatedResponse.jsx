@@ -13,7 +13,7 @@ const AnimatedResponse = ({ message }) => {
         setDisplayedMessage(message.slice(0, currentIndex + 1));
         setCurrentIndex(currentIndex + 1);
       }
-    }, 35); // Adjust the delay (in milliseconds) between each letter
+    }, 20); // Adjust the delay (in milliseconds) between each letter
 
     return () => clearInterval(intervalId);
   }, [message, currentIndex]);
