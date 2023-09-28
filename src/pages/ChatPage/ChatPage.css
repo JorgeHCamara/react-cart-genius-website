@@ -79,7 +79,31 @@
     justify-content: center;
     align-items: center;
     overflow-y: auto;
-  }  
+  } 
+
+  .inputWrapper {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.input-chat {
+    padding-right: 40px;
+    flex-grow: 1;
+}
+
+.voiceButton {
+    position: absolute;
+    right: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.voiceButton i.fa {
+    font-size: 1.5em;
+}
 
 @media (max-width: 768px) {
     .container-chat {
@@ -119,5 +143,11 @@
     .responseText {
         margin-left: 20px;
         font-size: 15px;
+    }
+
+    .voiceButton {
+        right: 15px;
+        font-size: 20px;
+        bottom: 18px;
     }
 }

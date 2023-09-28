@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './ChatPage.css';
 import axios from 'axios';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
@@ -11,6 +11,8 @@ const ChatPage = () => {
     const [conversation, setConversation] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
+
+    const [isListening, setIsListening] = useState(false);
 
     const inputRef = useRef(null);
 
@@ -65,6 +67,34 @@ const ChatPage = () => {
         }
     }
 
+    const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+
+recognition.onstart = () => {
+    console.log('Voice is being recognized...');
+};
+
+recognition.onresult = (event) => {
+    const transcriptArray = Array.from(event.results);
+    const sentence = transcriptArray.map(n => n[0].transcript).join('');
+    setUserInput(sentence);
+};
+
+const startListening = () => {
+    recognition.start();
+    setIsListening(true);
+};
+
+const stopListening = () => {
+    recognition.stop();
+    setIsListening(false);
+};
+
+useEffect(() => {
+    recognition.lang = 'pt-BR';
+}, []);
+
     return (
         <div className="container-chat">
             <div className="firstView">
@@ -87,19 +117,30 @@ const ChatPage = () => {
                 ))}
             </div>
             <div className="inputContainer">
-                <input
-                    className="input-chat"
-                    type="text"
-                    value={userInput}
-                    onChange={(e) => setUserInput(e.target.value)}
-                    onKeyPress={(e) => {
-                        if (e.key === 'Enter') {
-                            callApi();
-                        }
-                    }}
-                    ref={inputRef}
-                    placeholder='Faça seu pedido'
-                />
+                <div className="inputWrapper">
+                    <input
+                        className="input-chat"
+                        type="text"
+                        value={userInput}
+                        onChange={(e) => setUserInput(e.target.value)}
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter') {
+                                callApi();
+                            }
+                        }}
+                        ref={inputRef}
+                        placeholder='Faça seu pedido'
+                    />
+                    {isListening ? (
+                        <button className="voiceButton" onClick={stopListening}>
+                            <i className="fa fa-microphone-slash"></i>
+                        </button>
+                    ) : (
+                        <button className="voiceButton" onClick={startListening}>
+                            <i className="fa fa-microphone"></i>
+                        </button>
+                    )}
+                </div>
                 <button className="sendButton" onClick={callApi}>
                     <i className="fa fa-paper-plane"></i>
                 </button>
