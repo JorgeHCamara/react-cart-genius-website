@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import './ChatPage.css';
 import axios from 'axios';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import AnimatedResponse from '../../components/LoadingSpinner/widgets/AnimatedResponse';
+import SpeechToText from '../../components/SpeechToText/SpeechToText';
 
 const ChatPage = () => {
     const [userInput, setUserInput] = useState('');
@@ -12,8 +13,7 @@ const ChatPage = () => {
     const [loading, setLoading] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
 
-    const [isListening, setIsListening] = useState(false);
-    const [recognition, setRecognition] = useState(null);
+    const { isListening, startListening, stopListening } = SpeechToText({ setUserInput });
 
     const inputRef = useRef(null);
 
@@ -67,49 +67,6 @@ const ChatPage = () => {
             return false;
         }
     }
-
-    useEffect(() => {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        const recognitionInstance = new SpeechRecognition();
-
-        recognitionInstance.lang = 'pt-BR';
-        recognitionInstance.onstart = () => {
-            console.log('Voice is being recognized...');
-        };
-
-        recognitionInstance.onresult = (event) => {
-            const transcriptArray = Array.from(event.results);
-            const sentence = transcriptArray.map(n => n[0].transcript).join('');
-            setUserInput(sentence);
-        };
-
-        recognitionInstance.onspeechend = () => {
-            console.log('Speech has stopped being detected');
-            setIsListening(false);
-        };
-
-        setRecognition(recognitionInstance);
-
-        return () => {
-            recognitionInstance.onspeechend = null; 
-            recognitionInstance.onresult = null;    
-            recognitionInstance.onstart = null;    
-        };
-    }, []);
-
-    const startListening = () => {
-        if (recognition) {
-            recognition.start();
-            setIsListening(true);
-        }
-    };
-
-    const stopListening = () => {
-        if (recognition) {
-            recognition.stop();
-            setIsListening(false);
-        }
-    };
 
     return (
         <div className="container-chat">
