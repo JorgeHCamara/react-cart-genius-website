@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import './ChatPage.css';
 import axios from 'axios';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
-import AnimatedResponse from '../../components/LoadingSpinner/widgets/AnimatedResponse';
+import AnimatedResponse from '../../widgets/AnimatedResponse';
 import SpeechToText from '../../components/SpeechToText/SpeechToText';
 
 const ChatPage = () => {

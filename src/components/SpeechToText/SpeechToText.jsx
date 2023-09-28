@@ -26,11 +26,10 @@ const SpeechToText = ({setUserInput}) => {
 
         setRecognition(recognitionInstance);
 
-        // Função de limpeza para descartar a instância de reconhecimento ao desmontar
         return () => {
-            recognitionInstance.onspeechend = null;  // Limpa o evento onspeechend
-            recognitionInstance.onresult = null;     // Limpa o evento onresult
-            recognitionInstance.onstart = null;      // Limpa o evento onstart
+            recognitionInstance.onspeechend = null;
+            recognitionInstance.onresult = null;  
+            recognitionInstance.onstart = null;
         };
     }, [setUserInput]);
 
