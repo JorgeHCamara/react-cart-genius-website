@@ -13,6 +13,7 @@ const ChatPage = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     const [isListening, setIsListening] = useState(false);
+    const [recognition, setRecognition] = useState(null);
 
     const inputRef = useRef(null);
 
@@ -35,7 +36,7 @@ const ChatPage = () => {
 
             console.log("Data received from API:", response.data);
 
-            console.log('Response from API:', response.data.response);  // Log the response from the API
+            console.log('Response from API:', response.data.response);
             console.log('Is URL:', isUrl(response.data.response));
 
             const geniusMessage = { speaker: 'Cart Genius', message: response.data.response, isImageUrl: isUrl(response.data.response) };
@@ -48,7 +49,7 @@ const ChatPage = () => {
             console.error('An error occurred while accessing the API:', error);
         } finally {
             setLoading(false);
-            focusInput(); 
+            focusInput();
         }
     };
 
@@ -67,33 +68,48 @@ const ChatPage = () => {
         }
     }
 
-    const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
+    useEffect(() => {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognitionInstance = new SpeechRecognition();
 
-recognition.onstart = () => {
-    console.log('Voice is being recognized...');
-};
+        recognitionInstance.lang = 'pt-BR';
+        recognitionInstance.onstart = () => {
+            console.log('Voice is being recognized...');
+        };
 
-recognition.onresult = (event) => {
-    const transcriptArray = Array.from(event.results);
-    const sentence = transcriptArray.map(n => n[0].transcript).join('');
-    setUserInput(sentence);
-};
+        recognitionInstance.onresult = (event) => {
+            const transcriptArray = Array.from(event.results);
+            const sentence = transcriptArray.map(n => n[0].transcript).join('');
+            setUserInput(sentence);
+        };
 
-const startListening = () => {
-    recognition.start();
-    setIsListening(true);
-};
+        recognitionInstance.onspeechend = () => {
+            console.log('Speech has stopped being detected');
+            setIsListening(false);
+        };
 
-const stopListening = () => {
-    recognition.stop();
-    setIsListening(false);
-};
+        setRecognition(recognitionInstance);
 
-useEffect(() => {
-    recognition.lang = 'pt-BR';
-}, []);
+        return () => {
+            recognitionInstance.onspeechend = null; 
+            recognitionInstance.onresult = null;    
+            recognitionInstance.onstart = null;    
+        };
+    }, []);
+
+    const startListening = () => {
+        if (recognition) {
+            recognition.start();
+            setIsListening(true);
+        }
+    };
+
+    const stopListening = () => {
+        if (recognition) {
+            recognition.stop();
+            setIsListening(false);
+        }
+    };
 
     return (
         <div className="container-chat">
