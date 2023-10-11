@@ -6,7 +6,7 @@ const AnimatedResponse = ({ message, isImageUrl, onImageClick }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const messageLength = message.length;
+    const messageLength = message ? message.length : 0;
 
     if (isImageUrl) {
       setDisplayedMessage(message);

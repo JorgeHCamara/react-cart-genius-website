@@ -12,6 +12,8 @@ const ChatPage = () => {
     const [conversation, setConversation] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
+    const [cartItems, setCartItems] = useState([]);
+    const [total, setTotal] = useState(0);
 
     const { isListening, startListening, stopListening } = SpeechToText({ setUserInput });
 
@@ -33,18 +35,31 @@ const ChatPage = () => {
             const response = await axios.post('/api/query', {
                 query: userInput
             });
-
-            console.log("Data received from API:", response.data);
-
-            console.log('Response from API:', response.data.response);
-            console.log('Is URL:', isUrl(response.data.response));
-
-            const geniusMessage = { speaker: 'Cart Genius', message: response.data.response, isImageUrl: isUrl(response.data.response) };
-
+        
+            let geniusMessage;
+            if (response.data.Nome) {
+                // Se a resposta é um objeto de produto, adicione-a ao carrinho
+                setCartItems(prevItems => [...prevItems, response.data]);
+                setTotal(prevTotal => prevTotal + parseFloat(response.data.Preco));
+                
+                geniusMessage = {
+                    speaker: 'Cart Genius',
+                    message: `Produto ${response.data.Nome} adicionado ao carrinho!`,
+                    isImageUrl: false
+                };
+            } else {
+                const apiResponse = response.data.response;
+                geniusMessage = {
+                    speaker: 'Cart Genius',
+                    message: apiResponse,
+                    isImageUrl: isUrl(apiResponse)
+                };
+            }
+        
             setConversation([...conversation, geniusMessage]);
-
-            setResponses([...responses, response.data.response]);
-
+        
+            setResponses([...responses, geniusMessage.message]);
+        
         } catch (error) {
             console.error('An error occurred while accessing the API:', error);
         } finally {
@@ -69,61 +84,85 @@ const ChatPage = () => {
     }
 
     return (
-        <div className="container-chat">
-            <div className="firstView">
-                <p className="responseText">
-                    <strong>Cart Genius:</strong> Olá, como posso te ajudar?
-                </p>
-                {userConversation.map((userMessage, index) => (
-                    <React.Fragment key={index}>
-                        <p className="responseText">
-                            <strong>{userMessage.user}:</strong> {userMessage.input}
-                        </p>
-                        {conversation[index] && (
-                            <AnimatedResponse 
-                                message={conversation[index].message} 
-                                isImageUrl={conversation[index].isImageUrl}
-                                onImageClick={image => setSelectedImage(image)}
-                            />
+        <div className="containerChatPage">
+            <div className="container-cart">
+                <h2>Carrinho de Compras</h2>
+                <div className="products-list-container">
+                    <ul>
+                        {cartItems.map(item => (
+                            <li key={item.Nome} className="product-card">
+                                <img className="product-image" src={item.Imagem} alt={item.Nome} />
+                                <div className="product-details">
+                                    <span className="product-name">{item.Nome}</span>
+                                    <span className="product-price">R$ {item.Preco}</span>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="cart-footer">
+                    <p className="cart-total">Total: R$ {total.toFixed(2)}</p>
+                    <button className="checkout-button" disabled={cartItems.length === 0}>
+                        Finalizar compra
+                    </button>
+                </div>
+            </div>
+            <div className="container-chat">
+                <div className="firstView">
+                    <p className="responseText">
+                        <strong>Cart Genius:</strong> Olá, como posso te ajudar?
+                    </p>
+                    {userConversation.map((userMessage, index) => (
+                        <React.Fragment key={index}>
+                            <p className="responseText">
+                                <strong>{userMessage.user}:</strong> {userMessage.input}
+                            </p>
+                            {conversation[index] && (
+                                <AnimatedResponse 
+                                    message={conversation[index].message} 
+                                    isImageUrl={conversation[index].isImageUrl}
+                                    onImageClick={image => setSelectedImage(image)}
+                                />
+                            )}
+                        </React.Fragment>
+                    ))}
+                </div>
+                <div className="inputContainer">
+                    <div className="inputWrapper">
+                        <input
+                            className="input-chat"
+                            type="text"
+                            value={userInput}
+                            onChange={(e) => setUserInput(e.target.value)}
+                            onKeyPress={(e) => {
+                                if (e.key === 'Enter') {
+                                    callApi();
+                                }
+                            }}
+                            ref={inputRef}
+                            placeholder='Faça seu pedido'
+                        />
+                        {isListening ? (
+                            <button className="voiceButton" onClick={stopListening}>
+                                <i className="fa fa-microphone-slash"></i>
+                            </button>
+                        ) : (
+                            <button className="voiceButton" onClick={startListening}>
+                                <i className="fa fa-microphone"></i>
+                            </button>
                         )}
-                    </React.Fragment>
-                ))}
-            </div>
-            <div className="inputContainer">
-                <div className="inputWrapper">
-                    <input
-                        className="input-chat"
-                        type="text"
-                        value={userInput}
-                        onChange={(e) => setUserInput(e.target.value)}
-                        onKeyPress={(e) => {
-                            if (e.key === 'Enter') {
-                                callApi();
-                            }
-                        }}
-                        ref={inputRef}
-                        placeholder='Faça seu pedido'
-                    />
-                    {isListening ? (
-                        <button className="voiceButton" onClick={stopListening}>
-                            <i className="fa fa-microphone-slash"></i>
-                        </button>
-                    ) : (
-                        <button className="voiceButton" onClick={startListening}>
-                            <i className="fa fa-microphone"></i>
-                        </button>
-                    )}
+                    </div>
+                    <button className="sendButton" onClick={callApi}>
+                        <i className="fa fa-paper-plane"></i>
+                    </button>
                 </div>
-                <button className="sendButton" onClick={callApi}>
-                    <i className="fa fa-paper-plane"></i>
-                </button>
+                {loading && <LoadingSpinner />}
+                {selectedImage && (
+                    <div className="modalProductImage" onClick={() => setSelectedImage(null)}>
+                        <img src={selectedImage} alt="Expanded Product" style={{ maxWidth: '100%', height: 'auto' }} />
+                    </div>
+                )}
             </div>
-            {loading && <LoadingSpinner />}
-            {selectedImage && (
-                <div className="modalProductImage" onClick={() => setSelectedImage(null)}>
-                    <img src={selectedImage} alt="Expanded Product" style={{ maxWidth: '100%', height: 'auto' }} />
-                </div>
-            )}
         </div>
     );
 };

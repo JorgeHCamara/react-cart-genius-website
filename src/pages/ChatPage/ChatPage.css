@@ -3,12 +3,19 @@
     max-height: 500px;
     overflow-y: auto;
 }
+
+.containerChatPage {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 0px; /* Space between chat and cart */
+    margin-right: 100px;
+}
   
 .container-chat {
     background-color: rgba(255, 255, 255, 0.03);
     min-height: 500px;
     width: 60%;
-    margin: auto;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
@@ -32,7 +39,7 @@
     justify-content: center;
     position: absolute;
     bottom: 0;
-    width: 60%;
+    width: 45%;
     margin-bottom: 60px;
 }
 
@@ -103,6 +110,113 @@
 
 .voiceButton i.fa {
     font-size: 1.5em;
+}
+
+.container-cart {
+    width: 20%;
+    background-color: rgba(255, 255, 255, 0.03);
+    height: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px 15px 15px 20px;
+    margin-right: 20px;
+    position: relative;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-cart h2 {
+    color: #FFF;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.container-cart ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.products-list-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Isso faz com que o container de produtos ocupe todo o espaço disponível */
+    overflow-y: auto;
+}
+
+.product-card {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.product-card:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.product-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    color: #FFF;
+    font-weight: bold;
+}
+
+.product-price {
+    color: #FFF;
+    margin-top: 5px;
+}
+
+.cart-total {
+    color: #FFF;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.checkout-button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    margin-top: 20px;
+    background-color: #4CAF50; /* Cor de fundo do botão */
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-button:hover {
+    background-color: #45a049; /* Cor de fundo do botão ao passar o mouse */
+}
+
+.checkout-button:disabled {
+    background-color: #ddd; /* Cor de fundo do botão quando desabilitado */
+    cursor: not-allowed;
+}
+
+.cart-footer {
+    position: sticky;
+    bottom: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
