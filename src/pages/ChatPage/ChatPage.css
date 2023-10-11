@@ -222,6 +222,13 @@
 }
 
 @media (max-width: 768px) {
+
+    .containerChatPage {
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-right: 0; /* Remover a margem direita */
+    }
+
     .container-chat {
         width: 80%;
     }
@@ -236,6 +243,12 @@
     
     .sendButton {
         border-radius: 0;
+    }
+
+    .container-cart {
+        width: 95%;
+        margin-right: 0; /* Remover a margem direita */
+        margin-top: 20px;
     }
 }
 
