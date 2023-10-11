@@ -69,61 +69,73 @@ const ChatPage = () => {
     }
 
     return (
-        <div className="container-chat">
-            <div className="firstView">
-                <p className="responseText">
-                    <strong>Cart Genius:</strong> Olá, como posso te ajudar?
-                </p>
-                {userConversation.map((userMessage, index) => (
-                    <React.Fragment key={index}>
-                        <p className="responseText">
-                            <strong>{userMessage.user}:</strong> {userMessage.input}
-                        </p>
-                        {conversation[index] && (
-                            <AnimatedResponse 
-                                message={conversation[index].message} 
-                                isImageUrl={conversation[index].isImageUrl}
-                                onImageClick={image => setSelectedImage(image)}
-                            />
+        <div className="containerChatPage">
+            <div className="container-cart">
+                <h2>Carrinho de Compras</h2>
+                <ul>
+                    {/* Here you can map through the items in the cart and display them */}
+                    {/* Example: */}
+                    {/* {cartItems.map(item => (
+                        <li key={item.id}>{item.name} - {item.price}</li>
+                    ))} */}
+                </ul>
+            </div>
+            <div className="container-chat">
+                <div className="firstView">
+                    <p className="responseText">
+                        <strong>Cart Genius:</strong> Olá, como posso te ajudar?
+                    </p>
+                    {userConversation.map((userMessage, index) => (
+                        <React.Fragment key={index}>
+                            <p className="responseText">
+                                <strong>{userMessage.user}:</strong> {userMessage.input}
+                            </p>
+                            {conversation[index] && (
+                                <AnimatedResponse 
+                                    message={conversation[index].message} 
+                                    isImageUrl={conversation[index].isImageUrl}
+                                    onImageClick={image => setSelectedImage(image)}
+                                />
+                            )}
+                        </React.Fragment>
+                    ))}
+                </div>
+                <div className="inputContainer">
+                    <div className="inputWrapper">
+                        <input
+                            className="input-chat"
+                            type="text"
+                            value={userInput}
+                            onChange={(e) => setUserInput(e.target.value)}
+                            onKeyPress={(e) => {
+                                if (e.key === 'Enter') {
+                                    callApi();
+                                }
+                            }}
+                            ref={inputRef}
+                            placeholder='Faça seu pedido'
+                        />
+                        {isListening ? (
+                            <button className="voiceButton" onClick={stopListening}>
+                                <i className="fa fa-microphone-slash"></i>
+                            </button>
+                        ) : (
+                            <button className="voiceButton" onClick={startListening}>
+                                <i className="fa fa-microphone"></i>
+                            </button>
                         )}
-                    </React.Fragment>
-                ))}
-            </div>
-            <div className="inputContainer">
-                <div className="inputWrapper">
-                    <input
-                        className="input-chat"
-                        type="text"
-                        value={userInput}
-                        onChange={(e) => setUserInput(e.target.value)}
-                        onKeyPress={(e) => {
-                            if (e.key === 'Enter') {
-                                callApi();
-                            }
-                        }}
-                        ref={inputRef}
-                        placeholder='Faça seu pedido'
-                    />
-                    {isListening ? (
-                        <button className="voiceButton" onClick={stopListening}>
-                            <i className="fa fa-microphone-slash"></i>
-                        </button>
-                    ) : (
-                        <button className="voiceButton" onClick={startListening}>
-                            <i className="fa fa-microphone"></i>
-                        </button>
-                    )}
+                    </div>
+                    <button className="sendButton" onClick={callApi}>
+                        <i className="fa fa-paper-plane"></i>
+                    </button>
                 </div>
-                <button className="sendButton" onClick={callApi}>
-                    <i className="fa fa-paper-plane"></i>
-                </button>
+                {loading && <LoadingSpinner />}
+                {selectedImage && (
+                    <div className="modalProductImage" onClick={() => setSelectedImage(null)}>
+                        <img src={selectedImage} alt="Expanded Product" style={{ maxWidth: '100%', height: 'auto' }} />
+                    </div>
+                )}
             </div>
-            {loading && <LoadingSpinner />}
-            {selectedImage && (
-                <div className="modalProductImage" onClick={() => setSelectedImage(null)}>
-                    <img src={selectedImage} alt="Expanded Product" style={{ maxWidth: '100%', height: 'auto' }} />
-                </div>
-            )}
         </div>
     );
 };
