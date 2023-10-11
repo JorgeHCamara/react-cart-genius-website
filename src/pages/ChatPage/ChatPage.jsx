@@ -12,6 +12,8 @@ const ChatPage = () => {
     const [conversation, setConversation] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
+    const [cartItems, setCartItems] = useState([]);
+    const [total, setTotal] = useState(0);
 
     const { isListening, startListening, stopListening } = SpeechToText({ setUserInput });
 
@@ -30,21 +32,34 @@ const ChatPage = () => {
         setUserInput('');
 
         try {
-            const response = await axios.post('http://20.226.74.28:8080/query', {
+            const response = await axios.post('/api/query', {
                 query: userInput
             });
-
-            console.log("Data received from API:", response.data);
-
-            console.log('Response from API:', response.data.response);
-            console.log('Is URL:', isUrl(response.data.response));
-
-            const geniusMessage = { speaker: 'Cart Genius', message: response.data.response, isImageUrl: isUrl(response.data.response) };
-
+        
+            let geniusMessage;
+            if (response.data.Nome) {
+                // Se a resposta é um objeto de produto, adicione-a ao carrinho
+                setCartItems(prevItems => [...prevItems, response.data]);
+                setTotal(prevTotal => prevTotal + parseFloat(response.data.Preco));
+                
+                geniusMessage = {
+                    speaker: 'Cart Genius',
+                    message: `Produto ${response.data.Nome} adicionado ao carrinho!`,
+                    isImageUrl: false
+                };
+            } else {
+                const apiResponse = response.data.response;
+                geniusMessage = {
+                    speaker: 'Cart Genius',
+                    message: apiResponse,
+                    isImageUrl: isUrl(apiResponse)
+                };
+            }
+        
             setConversation([...conversation, geniusMessage]);
-
-            setResponses([...responses, response.data.response]);
-
+        
+            setResponses([...responses, geniusMessage.message]);
+        
         } catch (error) {
             console.error('An error occurred while accessing the API:', error);
         } finally {
@@ -72,13 +87,25 @@ const ChatPage = () => {
         <div className="containerChatPage">
             <div className="container-cart">
                 <h2>Carrinho de Compras</h2>
-                <ul>
-                    {/* Here you can map through the items in the cart and display them */}
-                    {/* Example: */}
-                    {/* {cartItems.map(item => (
-                        <li key={item.id}>{item.name} - {item.price}</li>
-                    ))} */}
-                </ul>
+                <div className="products-list-container">
+                    <ul>
+                        {cartItems.map(item => (
+                            <li key={item.Nome} className="product-card">
+                                <img className="product-image" src={item.Imagem} alt={item.Nome} />
+                                <div className="product-details">
+                                    <span className="product-name">{item.Nome}</span>
+                                    <span className="product-price">R$ {item.Preco}</span>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="cart-footer">
+                    <p className="cart-total">Total: R$ {total.toFixed(2)}</p>
+                    <button className="checkout-button" disabled={cartItems.length === 0}>
+                        Finalizar compra
+                    </button>
+                </div>
             </div>
             <div className="container-chat">
                 <div className="firstView">
