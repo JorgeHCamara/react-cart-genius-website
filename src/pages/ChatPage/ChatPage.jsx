@@ -32,7 +32,7 @@ const ChatPage = () => {
         setUserInput('');
 
         try {
-            const response = await axios.post('http://20.226.74.28:8080/query', {
+            const response = await axios.post('/api/query', {
                 query: userInput
             });
         
