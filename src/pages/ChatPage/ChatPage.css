@@ -2,6 +2,7 @@
     padding-top: 25px;
     max-height: 500px;
     overflow-y: auto;
+    flex-grow: 1;
 }
 
 .containerChatPage {
@@ -14,12 +15,14 @@
   
 .container-chat {
     background-color: rgba(255, 255, 255, 0.03);
-    min-height: 500px;
+    height: 500px;
     width: 60%;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column; /* Para garantir que o conteúdo seja empilhado verticalmente */
 }
 
 .responseText {
@@ -27,20 +30,19 @@
     color: #FFF;
     font-size: 16px;
     margin-left: 40px;
-    max-width: 85%;
+    max-width: 90%;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
 .inputContainer {
+    position: relative; /* Resetando para posicionamento relativo */
+    bottom: auto; /* Removendo a propriedade bottom */
+    width: 100%; /* Ajustando a largura para se adaptar ao container do chat */
+    margin-bottom: 0; /* Removendo a margem inferior */
+    padding: 10px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
-    width: 45%;
-    margin-bottom: 60px;
+    justify-content: space-between;
 }
 
 .input-chat {

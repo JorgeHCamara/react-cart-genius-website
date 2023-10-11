@@ -32,7 +32,7 @@ const ChatPage = () => {
         setUserInput('');
 
         try {
-            const response = await axios.post('/api/query', {
+            const response = await axios.post('http://20.226.74.28:8080/query', {
                 query: userInput
             });
         
@@ -127,6 +127,7 @@ const ChatPage = () => {
                         </React.Fragment>
                     ))}
                 </div>
+                {loading && <LoadingSpinner />}
                 <div className="inputContainer">
                     <div className="inputWrapper">
                         <input
@@ -156,7 +157,6 @@ const ChatPage = () => {
                         <i className="fa fa-paper-plane"></i>
                     </button>
                 </div>
-                {loading && <LoadingSpinner />}
                 {selectedImage && (
                     <div className="modalProductImage" onClick={() => setSelectedImage(null)}>
                         <img src={selectedImage} alt="Expanded Product" style={{ maxWidth: '100%', height: 'auto' }} />
