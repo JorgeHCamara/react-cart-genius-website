@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+  }
+  
+
 body {
     min-height: 100vh;
     background: linear-gradient(to bottom, #190C2A , #822760 );

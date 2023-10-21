@@ -1,28 +1,48 @@
 .menuStyle {
     color: white;
-    padding: 20px 0;
-    background-color: #190C2A; /* Add a background color */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
     margin-bottom: 20px;
-    position: relative; 
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+}
+
+.menuLogo {
+    display: flex;
+    margin-top: 10px;
+    cursor: default;
+}
+
+.menuLogo img {
+    border-radius: 50%;
+}
+
+.menuLogo h1 {
+    margin: 25px 0 0 20px;
+    font-size: 1.8rem;
 }
 
 .menuItems {
     list-style: none;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    margin-top: -0.5rem;
 }
 
 .menuItem {
     margin: 0 30px;
 }
 
+.menuItem:last-child {
+    margin-right: 0px;
+}
+
 .menuLink {
     text-decoration: none;
     color: #e2e2e2;
-    font-size: 20px;
-    padding: 5px 10px;
+    font-size: 1.25rem;
+    cursor: pointer;
 }
 
 .menuLink:hover {

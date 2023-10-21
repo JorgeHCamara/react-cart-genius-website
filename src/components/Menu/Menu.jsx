@@ -1,24 +1,39 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './MenuStyles.css'
 import { useAuth } from '../AuthContext/AuthContext';
+import logoImage from '../../assets/images/logo.jpeg'
 
 const Menu = () => {
   const { isLoggedIn } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-};
+  };
+
+  const handleAboutClick = () => {
+    navigate('/#about');
+  };
+
+  
 
   return (
     <nav className='menuStyle'>
+      <div className="menuLogo">
+          <img src={logoImage} alt="Logo" width='80' />
+          <h1>Cart Genius</h1>
+      </div>
       <button onClick={toggleMenu} className="hamburger-button">
                 ☰
       </button>
-      <ul className={`menuItems ${isMenuOpen ? 'open' : ''}`}> 
+      <ul className={`menuItems ${isMenuOpen ? 'open' : ''}`}>
         <li className='menuItem'>
-          <Link className='menuLink' to="/about" onClick={toggleMenu}>Sobre</Link>
+          <Link className='menuLink' to="/" onClick={toggleMenu}>Home</Link>
+        </li> 
+        <li className='menuItem'>
+          <a className='menuLink' href='#about' onClick={handleAboutClick}>Sobre</a>
         </li>
         {isLoggedIn ? (
           <li className='menuItem'>

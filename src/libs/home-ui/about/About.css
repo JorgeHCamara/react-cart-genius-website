@@ -3,7 +3,10 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-    width: 65%;
+    width: 60%;
+    margin-top: 6rem;
+    cursor: default;
+    transition: opacity 1.2s, transform 1.5s;
   }
   
   .contentContainer {
@@ -22,8 +25,13 @@
   .aboutText {
     color: white;
     margin-bottom: 20px;
-    text-align: left;
+    text-align: center;
     font-size: 22px;
+    letter-spacing: 1px;
+  }
+
+  .abt-txt-color {
+    color: #190C2A;
   }
   
   .linkTextAbout {

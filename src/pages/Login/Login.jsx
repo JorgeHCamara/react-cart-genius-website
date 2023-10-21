@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css'
 import logoImage from '../../assets/images/logo.jpeg';
+import Menu from '../../components/Menu/Menu';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -40,45 +41,48 @@ const Login = () => {
       };
 
     return (
-    <div className='container'>
-        <img src={logoImage} alt="Logo" className="logo" />
-        <h1 className="title">Cart Genius</h1>
-        {!showInputs && (
-        <>
-            <button className="button" onClick={() => choosePersonType('clientes')}>
-              <span className="button-text">Cliente</span>
-            </button>
-            <button className="button" onClick={() => choosePersonType('empresas')}>
-              <span className="button-text">Empresa</span>
-            </button>
-        </>
-        )}
-        {showInputs && (
-        <>
-            <label className="label">E-mail</label>
-            <input
-            className="input"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            />
-            <label className="label">Senha</label>
-            <input
-            className="input"
-            type="password"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            />
-            <button className="button" onClick={login}>
-            <span className='button-text'>Entrar</span>
-            </button>
-        </>
-        )}
-        <p className="forgot-password">Esqueceu sua senha?</p>
-        <p className="create-account">
-        Não tem uma conta? <Link className='hereLink' to="/create-account">Crie uma aqui</Link>.
-        </p>
-    </div>
+      <>
+      <Menu />
+      <div className='container'>
+          <img src={logoImage} alt="Logo" className="logo" />
+          <h1 className="title">Cart Genius</h1>
+          {!showInputs && (
+          <>
+              <button className="button" onClick={() => choosePersonType('clientes')}>
+                <span className="button-text">Cliente</span>
+              </button>
+              <button className="button" onClick={() => choosePersonType('empresas')}>
+                <span className="button-text">Empresa</span>
+              </button>
+          </>
+          )}
+          {showInputs && (
+          <>
+              <label className="label">E-mail</label>
+              <input
+              className="input"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              />
+              <label className="label">Senha</label>
+              <input
+              className="input"
+              type="password"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              />
+              <button className="button" onClick={login}>
+              <span className='button-text'>Entrar</span>
+              </button>
+          </>
+          )}
+          <p className="forgot-password">Esqueceu sua senha?</p>
+          <p className="create-account">
+          Não tem uma conta? <Link className='hereLink' to="/create-account">Crie uma aqui</Link>.
+          </p>
+      </div>
+      </>
     );
 };
 
