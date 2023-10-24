@@ -17,3 +17,7 @@ body {
     font-family: 'Roboto', sans-serif;
     padding-bottom: 20px;
 }
+
+body.white-background {
+    background: #FFFFFF;
+}

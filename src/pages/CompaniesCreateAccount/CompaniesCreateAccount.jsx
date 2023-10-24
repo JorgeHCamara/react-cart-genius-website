@@ -2,17 +2,25 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReactModal from 'react-modal';
-import './CreateAccount.css'
+import './CompaniesCreateAccount.css'
 import Menu from '../../components/Menu/Menu';
 
-const CreateAccount = () => {
+const CompaniesCreateAccount = () => {
+
+    useEffect(() => {
+        document.body.classList.add('white-background');
+
+        return () => {
+            document.body.classList.remove('white-background');
+        };
+    }, []);
 
   const [nome, setNome] = useState('');
   const [endereco, setEndereco] = useState('');
   const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [cpf, setCpf] = useState('');
+  const [cnpj, setCnpj] = useState('');
 
   const [emailError, setEmailError] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
@@ -30,14 +38,14 @@ const CreateAccount = () => {
   }, [email, telefone, emailTouched]);
 
   const register = async () => {
-    let url = `http://20.226.8.137:8080/clientes/`;
+    let url = `http://20.226.8.137:8080/empresas/`;
     let data = {
       nome: nome,
       endereco: endereco,
       telefone: telefone,
       email: email,
       senha: senha,
-      cpf: cpf
+      cnpj: cnpj
     };
 
     try {
@@ -64,23 +72,22 @@ const CreateAccount = () => {
 
   return (
     <>
-      <Menu />
       <div className="container">
-        <label className="label">Nome</label>
+        <label className="CompaniesLabel">Nome</label>
         <input
           className="input"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
           type="text"
         />
-        <label className="label">Endereço</label>
+        <label className="CompaniesLabel">Endereço</label>
         <input
           className="input"
           value={endereco}
           onChange={(e) => setEndereco(e.target.value)}
           type="text"
         />
-        <label className="label">Telefone</label>
+        <label className="CompaniesLabel">Telefone</label>
         <input
           className="input"
           value={telefone}
@@ -93,15 +100,15 @@ const CreateAccount = () => {
             }
           }
         />
-        <label className="label">CPF</label>
+        <label className="CompaniesLabel">CNPJ</label>
         <input
           className="input"
-          value={cpf}
-          onChange={(e) => setCpf(e.target.value)}
+          value={cnpj}
+          onChange={(e) => setCnpj(e.target.value)}
           type="text"
-          maxLength={11}
+          maxLength={14}
         />
-        <label className="label">E-mail</label>
+        <label className="CompaniesLabel">E-mail</label>
         <input
           className="input"
           value={email}
@@ -110,7 +117,7 @@ const CreateAccount = () => {
           onFocus={() => setEmailTouched(true)}
         />
         {emailError && <p className="error">{emailError}</p>}
-        <label className="label">Senha</label>
+        <label className="CompaniesLabel">Senha</label>
         <input
           className="input"
           value={senha}
@@ -143,4 +150,4 @@ const CreateAccount = () => {
   );
 };
 
-export default CreateAccount;
+export default CompaniesCreateAccount;

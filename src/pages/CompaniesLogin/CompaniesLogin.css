@@ -1,0 +1,140 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.logo {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.CompaniesTitle {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.input {
+    width: 30%;
+    height: 40px;
+    border-color: gray;
+    border-width: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 20px;
+}
+
+.CompaniesButton {
+    background-color: #00072E;
+    padding: 20px 0;
+    border-radius: 4px;
+    margin-top: 25px;
+    border: 1px solid #000;
+    min-width: 300px;
+}
+
+.CompaniesButton:hover {
+    cursor: pointer;
+}
+
+.CompaniesLabel {
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    align-self: flex-start;
+    margin-left: 35%;
+    margin-bottom: 5px;
+}
+
+.CompaniesButtonText {
+    color: #FFF;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+
+.CompaniesForgotPassword {
+    color: #000;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.CompaniesCreateAccountLink {
+    color: #000;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.CompaniesHereLink {
+    color: #000;
+}
+
+@media (max-width: 768px) {
+    .container {
+      padding: 10px; 
+      margin-top: 20px;
+      text-align: center; 
+    }
+  
+    .logo {
+      width: 80%; 
+      height: auto; 
+      margin-bottom: 10px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+  
+    .title {
+      font-size: 30px; 
+      margin-bottom: 20px;
+    }
+  
+    .input {
+      width: 80%; 
+      height: 40px;
+      border-color: gray;
+      border-width: 1px;
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-bottom: 20px;
+    }
+  
+    .label {
+      color: #FFF;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      margin-left: 10%;
+    }
+  
+    .button {
+      padding: 15px 0; 
+      border-radius: 4px;
+      margin-top: 25px;
+      border: 1px solid #FFF;
+      min-width: 80%; 
+    }
+  
+    .forgot-password {
+      font-size: 16px; 
+      margin-top: 20px;
+    }
+  
+    .create-account {
+      font-size: 16px; 
+      margin-top: 10px;
+    }
+  
+    .hereLink {
+      color: #FFF;
+    }
+  }
