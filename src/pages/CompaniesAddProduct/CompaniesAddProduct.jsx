@@ -5,6 +5,8 @@ import ReactModal from 'react-modal';
 import './CompaniesAddProduct.css'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Menu from '../../components/Menu/Menu';
+import Papa from 'papaparse';
+import CSVExample from '../../assets/images/csv-exemplo.png'
 
 const CompaniesAddProduct = () => {
     const { companyId } = useParams();
@@ -26,6 +28,8 @@ const CompaniesAddProduct = () => {
   const [csvFile, setCsvFile] = useState(null);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [csvModalIsOpen, setCsvModalIsOpen] = useState(false);
+  const [csvExampleModalIsOpen, setCsvExampleModalIsOpen] = useState(false);
 
   const register = async () => {
     let url = `http://20.226.8.137:8080/empresas/${companyId}/produtos/cadastro`;
@@ -59,31 +63,49 @@ const CompaniesAddProduct = () => {
     return commonFields;
   };
 
-    const uploadCSV = async () => {
-        const url = "http://20.226.8.137:5000/upload";
-        const formData = new FormData();
-        formData.append("file", csvFile);
-        formData.append("empresaId", companyId)
-        try {
-            const response = await axios.post(url, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-            if (response.data.success) {
-                window.alert("CSV enviado com sucesso!");
-            } else {
-                window.alert("Erro ao enviar CSV.");
+  const openCsvExampleModal = () => {
+    setCsvExampleModalIsOpen(true);
+  };
+  
+  const closeCsvExampleModal = () => {
+    setCsvExampleModalIsOpen(false);
+  };
+
+    const handleCSVUpload = async () => {
+        // Convertendo o CSV para um array de objetos
+        Papa.parse(csvFile, {
+            header: true,
+            skipEmptyLines: true,
+            complete: async function(results) {
+                // Transformação dos dados
+                const transformedData = results.data.map(item => ({
+                    nome: item.Nome,
+                    marca: item.Marca,
+                    categoria: item.Categoria.trim(),
+                    descricao: item.Descricao,
+                    preco: parseFloat(item.Preco),
+                    imagem: item.Imagem,
+                    empresaId: companyId
+                }));
+
+                // Envio para a API
+                for (const data of transformedData) {
+                    try {
+                        const url = `http://20.226.8.137:8080/empresas/${companyId}/produtos/cadastro`;
+                        const response = await axios.post(url, data);
+                        console.log("Data sent successfully:", response);
+                    } catch (error) {
+                        console.error("Error sending data:", error);
+                    }
+                }
+                setCsvModalIsOpen(true);
             }
-        } catch (error) {
-            console.log("Error response:", error.response); // <-- Adicionado aqui
-            console.log("Error data:", error.response.data);
-            if (error.response && error.response.data) {
-                window.alert(error.response.data.message || "Erro ao enviar CSV."); // <-- Adicionado aqui
-            } else {
-                window.alert("Erro ao enviar CSV.");
-            }
-        }
+        });
+    };
+
+    const continueAfterCsv = () => {
+        setCsvModalIsOpen(false);
+        window.location.href = `/companies-page/${companyId}`;
     };
 
   return (
@@ -138,19 +160,49 @@ const CompaniesAddProduct = () => {
           onChange={(e) => setImagem(e.target.value)}
           type="text"
         />
-        <label className="CompaniesLabel">Upload CSV</label>
+        <label className="CompaniesLabel">Adicionar mais de um produto via CSV <span className="csv-example-link" onClick={openCsvExampleModal}> (Exemplo)</span></label>
         <input
             className="input"
             type="file"
             accept=".csv"
             onChange={(e) => setCsvFile(e.target.files[0])}
         />
-        <button className="button button-hover" onClick={uploadCSV} disabled={!csvFile}>
+        <button className="button button-hover" onClick={handleCSVUpload} disabled={!csvFile}>
             <span className='button-text'>Enviar CSV</span>
         </button>
         <button className="button button-hover" onClick={register} disabled={!allFieldsFilled()}>
           <span className='button-text'>Cadastrar produto</span>
         </button>
+        <ReactModal
+            ariaHideApp={false}
+            isOpen={csvExampleModalIsOpen}
+            onRequestClose={closeCsvExampleModal}
+            contentLabel="Exemplo de CSV"
+            overlayClassName="csv-modal-overlay"
+            className="csv-modal-content"
+            >
+            <div className="csv-modal-body">
+                <img src={CSVExample} alt="Exemplo CSV" style={{ width: '100%', cursor: 'pointer' }} onClick={closeCsvExampleModal} />
+            </div>
+        </ReactModal>
+        <ReactModal
+            ariaHideApp={false}
+            isOpen={csvModalIsOpen}
+            onRequestClose={() => setCsvModalIsOpen(false)}
+            contentLabel="Upload de CSV realizado com sucesso!"
+            overlayClassName="modal-overlay"
+            className="modal-content"
+            >
+            <div className="modal-header">
+                Upload de CSV realizado com sucesso!
+            </div>
+            <div className="modal-body">
+                Seus produtos foram cadastrados com sucesso via CSV. Clique em Continuar para ser redirecionado à página inicial.
+            </div>
+            <div className="modal-footer">
+                <button className="button button-text button-hover" onClick={continueAfterCsv}>Continuar</button>
+            </div>
+        </ReactModal>
         <ReactModal
           ariaHideApp={false}
           isOpen={modalIsOpen}

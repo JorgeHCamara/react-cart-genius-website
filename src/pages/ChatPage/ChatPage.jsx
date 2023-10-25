@@ -4,6 +4,7 @@ import axios from 'axios';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import AnimatedResponse from '../../widgets/AnimatedResponse';
 import SpeechToText from '../../components/SpeechToText/SpeechToText';
+import Menu from '../../components/Menu/Menu';
 
 const ChatPage = () => {
     const [userInput, setUserInput] = useState('');
@@ -84,6 +85,8 @@ const ChatPage = () => {
     }
 
     return (
+        <>
+        <Menu />
         <div className="containerChatPage">
             <div className="container-cart">
                 <h2>Carrinho de Compras</h2>
@@ -164,6 +167,7 @@ const ChatPage = () => {
                 )}
             </div>
         </div>
+        </>
     );
 };
 

@@ -44,9 +44,6 @@ const Menu = () => {
             <Link className='menuLink' to="/login" onClick={toggleMenu}>Login</Link>
           </li>
         )}
-        <li className='menuItem'>
-          <Link className='menuLink' to="/create-account" onClick={toggleMenu}>Cadastro</Link>
-        </li>
       </ul>
     </nav>
   );

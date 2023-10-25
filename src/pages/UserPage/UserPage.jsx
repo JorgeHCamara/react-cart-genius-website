@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import '../Login/Login.css'
 import logoImage from '../../assets/images/logo.jpeg';
 import { useAuth } from '../../components/AuthContext/AuthContext';
+import Menu from '../../components/Menu/Menu';
 
 const UserPage = () => {
 
@@ -24,16 +25,19 @@ const UserPage = () => {
     }, [setIsLoggedIn]);
 
     return (
-    <div className='container'>
-        <img src={logoImage} alt="Logo" className="logo" />
-        <h1 className="title">Cart Genius</h1>
-        <button className="button">
-            <Link className='button-text' to="/chat">Fazer pedido</Link>
-        </button>
-        <button className="button" onClick={handleLogout}>
-            <span className='button-text'>Sair</span>
-        </button>
-    </div>
+        <>
+            <Menu />
+            <div className='container'>
+                <img src={logoImage} alt="Logo" className="logo" />
+                <h1 className="title">Cart Genius</h1>
+                <button className="button">
+                    <Link className='button-text' to="/chat">Fazer pedido</Link>
+                </button>
+                <button className="button" onClick={handleLogout}>
+                    <span className='button-text'>Sair</span>
+                </button>
+            </div>
+        </>
     );
 };
 

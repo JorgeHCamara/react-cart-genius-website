@@ -15,9 +15,9 @@
 }
 
 .heroText button {
-    padding: 15px 35px;
-    margin-top: 70px;
-    font-size: 22px;
+    padding: 20px 45px;
+    margin-top: 60px;
+    font-size: 28px;
     border: 1px solid #fff;
     background: #190C2A;
     color: #fff;
@@ -37,7 +37,7 @@
 .heroImage img {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    width: 450px;
+    width: 28.125rem;
 }
 
 @media (max-width: 1024px) {
@@ -73,18 +73,26 @@
 }
 
 @media (max-width: 480px) {
+    .heroContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
     .heroText {
-        width: 100%;
+        width: 90%;
         font-size: 20px;
     }
 
     .heroText button {
-        padding: 10px 25px;
-        font-size: 18px;
+        padding: 20px 45px;
+        font-size: 26px;
+        margin-top: 30px;
     }
 
     .heroImage img {
-        width: 100%;
+        width: 90%;
         
     }
 }
