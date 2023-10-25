@@ -167,10 +167,10 @@ const CompaniesAddProduct = () => {
             accept=".csv"
             onChange={(e) => setCsvFile(e.target.files[0])}
         />
-        <button className="button button-hover" onClick={handleCSVUpload} disabled={!csvFile}>
+        <button className="button-add-product button-hover" onClick={handleCSVUpload} disabled={!csvFile}>
             <span className='button-text'>Enviar CSV</span>
         </button>
-        <button className="button button-hover" onClick={register} disabled={!allFieldsFilled()}>
+        <button className="button-add-product button-hover" onClick={register} disabled={!allFieldsFilled()}>
           <span className='button-text'>Cadastrar produto</span>
         </button>
         <ReactModal

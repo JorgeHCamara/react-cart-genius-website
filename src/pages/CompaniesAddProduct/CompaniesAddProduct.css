@@ -2,7 +2,7 @@
     color: blue;
     cursor: pointer;
     text-decoration: underline;
-    font-size: 10px;
+    font-size: 14px;
 }
 
 .csv-modal-overlay {
@@ -18,13 +18,12 @@
     z-index: 1000;
   }
   
-  /* Estilo padrão para o conteúdo do modal */
   .csv-modal-content {
     background: white;
     border-radius: 10px;
     padding: 20px;
     max-width: 90%;
-    width: 81.25rem; /* Ajuste a largura como preferir */
+    width: 81.25rem;
     height: auto;
     max-height: 90%;
     overflow-y: auto;
@@ -32,13 +31,11 @@
     z-index: 1001;
   }
   
-  /* Estilo específico para a imagem do exemplo CSV */
   .csv-modal-body img {
-    max-width: 100%; /* Garante que a imagem não saia dos limites do modal */
+    max-width: 100%;
     height: auto;
   }
   
-  /* Ajustes adicionais (se necessário) */
   .modal-header, .modal-footer {
     padding: 10px;
     text-align: center;
@@ -51,6 +48,20 @@
   
   .button.button-text.button-hover {
     margin-top: 10px;
+  }
+
+  .button-add-product {
+    background-color: #00072E;
+    padding: 20px 0;
+    border-radius: 4px;
+    margin-top: 10px;
+    border: 1px solid #FFF;
+    min-width: 300px;
+  }
+
+  .button-add-product:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
   }
 
   @media (max-width: 768px) {

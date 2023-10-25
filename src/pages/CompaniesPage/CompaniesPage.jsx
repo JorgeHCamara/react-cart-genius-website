@@ -18,10 +18,10 @@ const CompaniesPage = () => {
     const { setIsLoggedIn } = useAuth();
     const navigate = useNavigate();
 
-    const handleLogout = () => {
+    const handleLogoutCompanies = () => {
         localStorage.removeItem('token');
         setIsLoggedIn(false);
-        navigate('/login');
+        navigate('/companies');
     };
 
     useEffect(() => {
@@ -42,7 +42,7 @@ const CompaniesPage = () => {
         <button className="CompaniesButton">
             <Link className='CompaniesButtonText' to="/chat">Genius Insights</Link>
         </button>
-        <button className="CompaniesButton" onClick={handleLogout}>
+        <button className="CompaniesButton" onClick={handleLogoutCompanies}>
             <span className='CompaniesButtonText'>Sair</span>
         </button>
     </div>

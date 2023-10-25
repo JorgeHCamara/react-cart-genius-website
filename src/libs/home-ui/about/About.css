@@ -4,7 +4,7 @@
     align-items: center;
     margin: auto;
     width: 60%;
-    margin-top: 6rem;
+    margin-top: 3rem;
     cursor: default;
     transition: opacity 1.2s, transform 1.5s;
   }

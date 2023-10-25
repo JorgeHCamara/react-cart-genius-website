@@ -1,5 +1,6 @@
 import heroImage from '../../../assets/images/hero-image.jpeg'
 import './Hero.css'
+import { Link } from 'react-router-dom'
 
 
 const Hero = () => {
@@ -12,7 +13,9 @@ const Hero = () => {
                     Transformando Carrinhos em Conversas,
                     e Conversas em Compras.
                 </h2>
-                <button>Comece agora</button>
+                <div className='heroButtonDiv'>
+                    <Link className='heroButton' to='/login'>Comece agora</Link>
+                </div>
             </div>
             <div className="heroImage">
                 <img src={heroImage} alt="Logo" />

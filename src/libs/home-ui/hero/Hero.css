@@ -1,8 +1,8 @@
 .heroContainer {
     display: flex;
     justify-content: center;
-    align-items: center; /* Centraliza os itens verticalmente */
-    gap: 14rem; /* Adiciona um espaçamento entre os itens */
+    align-items: center;
+    gap: 14rem;
     padding-top: 50px;
     cursor: default;
 }
@@ -12,20 +12,27 @@
     font-size: 26px;
     color: #FFF;
     animation: fadeInLeft 1.5s forwards;
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
 }
 
-.heroText button {
+.heroButtonDiv {
+    margin-top: 10px;
+}
+
+.heroButton {
     padding: 20px 45px;
-    margin-top: 60px;
     font-size: 28px;
     border: 1px solid #fff;
     background: #190C2A;
     color: #fff;
     cursor: pointer;
     border-radius: 25px;
+    text-decoration: none;
 }
 
-.heroText button:hover {
+.heroButton:hover {
     background: #822760;
     transition: 0.3s;
 }

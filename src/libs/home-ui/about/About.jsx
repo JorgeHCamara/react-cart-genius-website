@@ -5,7 +5,7 @@ const About = () => {
 
     const [ref, inView] = useInView({
       triggerOnce: true, // Animação só ocorre uma vez
-      threshold: 0.6     // Ativa a animação quando 10% do elemento está visível
+      threshold: 0.5     // Ativa a animação quando 10% do elemento está visível
     });
 
     return (
