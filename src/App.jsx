@@ -9,6 +9,7 @@ import Home from './pages/Home/Home'
 import CompaniesLogin from './pages/CompaniesLogin/CompaniesLogin'
 import CompaniesCreateAccount from './pages/CompaniesCreateAccount/CompaniesCreateAccount'
 import CompaniesPage from './pages/CompaniesPage/CompaniesPage'
+import CompaniesAddProduct from './pages/CompaniesAddProduct/CompaniesAddProduct';
 
 function App() {
 
@@ -23,7 +24,8 @@ function App() {
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/companies" element={<CompaniesLogin />} />
           <Route path="/companies-create-account" element={<CompaniesCreateAccount />} />
-          <Route path="/companies-page" element={<CompaniesPage />} />
+          <Route path="/companies-page/:companyId" element={<CompaniesPage />} />
+          <Route path="/companies-page/:companyId/add-product" element={<CompaniesAddProduct />} />
         </Routes>
       </Router>
     </AuthProvider>

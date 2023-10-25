@@ -4,7 +4,7 @@ import axios from 'axios';
 import './CompaniesLogin.css'
 import logoImage from '../../assets/images/logo.jpeg';
 
-const Login = () => {
+const CompaniesLogin = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const navigate = useNavigate();
@@ -31,8 +31,14 @@ const Login = () => {
           const token = response.data.token; // Supondo que o token está na resposta do servidor
           localStorage.setItem('token', token);
 
-          navigate('/companies-page');
-    
+          const companyId = response.data.idEmpresa;
+            if (companyId) {
+                navigate(`/companies-page/${companyId}`);
+            } else {
+                console.error('ID da empresa não encontrado na resposta.');
+                navigate('/companies-page'); // Redireciona para uma página padrão (opcional)
+            }
+        
         } catch (error) {
           // Handle login error.
           console.error('Error logging in:', error);
@@ -71,4 +77,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default CompaniesLogin;

@@ -1,10 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import '../Login/Login.css'
 import logoImage from '../../assets/images/logo.jpeg';
 import { useAuth } from '../../components/AuthContext/AuthContext';
 
 const CompaniesPage = () => {
+    const { companyId } = useParams();
 
     useEffect(() => {
         document.body.classList.add('white-background');
@@ -36,7 +37,7 @@ const CompaniesPage = () => {
         <img src={logoImage} alt="Logo" className="logo" />
         <h1 className="CompaniesTitle">Cart Genius Companies</h1>
         <button className="CompaniesButton">
-            <Link className='CompaniesButtonText' to="/chat">Cadastrar produto</Link>
+            <Link className='CompaniesButtonText' to={`/companies-page/${companyId}/add-product`}>Cadastrar produto</Link>
         </button>
         <button className="CompaniesButton">
             <Link className='CompaniesButtonText' to="/chat">Genius Insights</Link>
