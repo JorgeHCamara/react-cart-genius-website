@@ -8,6 +8,7 @@ const Menu = () => {
   const { isLoggedIn } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const userId = localStorage.getItem('userId');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -37,7 +38,7 @@ const Menu = () => {
         </li>
         {isLoggedIn ? (
           <li className='menuItem'>
-            <Link className='menuLink' to="/user-page" onClick={toggleMenu}>Conta</Link>
+            <Link className='menuLink' to={`/user-page/${userId}`} onClick={toggleMenu}>Conta</Link>
           </li>
         ) : (
           <li className='menuItem'>

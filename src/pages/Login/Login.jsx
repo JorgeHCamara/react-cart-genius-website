@@ -24,7 +24,14 @@ const Login = () => {
           const token = response.data.token; // Supondo que o token está na resposta do servidor
           localStorage.setItem('token', token);
 
-          navigate('/user-page');
+          const userId = response.data.id;
+            if (userId) {
+              localStorage.setItem('userId', userId)
+              navigate(`/user-page/${userId}`);
+            } else {
+              console.error('ID do Usuário não encontrado');
+              navigate('/user-page'); // Redireciona para uma página padrão (opcional)
+            }
     
         } catch (error) {
           // Handle login error.

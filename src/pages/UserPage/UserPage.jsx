@@ -9,6 +9,7 @@ const UserPage = () => {
 
     const { setIsLoggedIn } = useAuth();
     const navigate = useNavigate();
+    const userId = localStorage.getItem('userId');
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -31,7 +32,7 @@ const UserPage = () => {
                 <img src={logoImage} alt="Logo" className="logo" />
                 <h1 className="title">Cart Genius</h1>
                 <button className="button">
-                    <Link className='button-text' to="/chat">Fazer pedido</Link>
+                    <Link className='button-text' to={`/user-page/${userId}/chat`}>Fazer pedido</Link>
                 </button>
                 <button className="button" onClick={handleLogout}>
                     <span className='button-text'>Sair</span>

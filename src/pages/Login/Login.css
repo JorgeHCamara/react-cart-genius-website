@@ -25,6 +25,7 @@
 
 .input {
     width: 30%;
+    max-width: 80rem;
     height: 40px;
     border-color: gray;
     border-width: 1px;
