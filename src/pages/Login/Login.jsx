@@ -13,7 +13,7 @@ const Login = () => {
     const login = async () => {
         try {
           // /clientes/login || http://20.226.8.137:8080/clientes/login
-          const response = await axios.post(`/clientes/login`, {
+          const response = await axios.post(`/clientes/*`, {
             email: email,
             senha: senha,
           });
