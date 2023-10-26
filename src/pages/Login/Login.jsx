@@ -12,9 +12,8 @@ const Login = () => {
 
     const login = async () => {
         try {
-          // Replace this with your API endpoint for web.
-          // eslint-disable-next-line no-unused-vars
-          const response = await axios.post(`http://20.226.8.137:8080/clientes/login`, {
+          // /clientes/login || http://20.226.8.137:8080/clientes/login
+          const response = await axios.post(`/clientes/login`, {
             email: email,
             senha: senha,
           });

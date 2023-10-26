@@ -85,7 +85,8 @@ const CheckoutPage = () => {
 
         console.log("Objeto enviado para a API:", order);     
         try {
-            const response = await axios.post('http://20.226.8.137:8080/vendas/', order, {
+            // http://20.226.8.137:8080/vendas/ || /vendas/
+            const response = await axios.post('/vendas/', order, {
                 timeout: 60000
             });
             window.alert("Compra realizada com sucesso!");

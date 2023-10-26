@@ -30,7 +30,8 @@ const CreateAccount = () => {
   }, [email, telefone, emailTouched]);
 
   const register = async () => {
-    let url = `http://20.226.8.137:8080/clientes/`;
+    // http://20.226.8.137:8080/clientes/ || /clientes/
+    let url = `/clientes/`;
     let data = {
       nome: nome,
       endereco: endereco,

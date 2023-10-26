@@ -1,2 +1,10 @@
 /api/*  http://20.226.8.137:5000/:splat  200
+
+/clientes/login*  http://20.226.8.137:8080/clientes/login/:splat  200
+/clientes/*  http://20.226.8.137:8080/clientes/:splat  200
+/vendas/*  http://20.226.8.137:8080/vendas/:splat  200
+/empresas/login*  http://20.226.8.137:8080/empresas/login/:splat  200
+/empresas/*  http://20.226.8.137:8080/empresas/:splat  200
+/empresas/:companyId/produtos/cadastro*  http://20.226.8.137:8080/empresas/:companyId/produtos/cadastro/:splat  200
+
 /*    /index.html   200

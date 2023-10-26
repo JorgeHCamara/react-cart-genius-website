@@ -38,7 +38,8 @@ const CompaniesCreateAccount = () => {
   }, [email, telefone, emailTouched]);
 
   const register = async () => {
-    let url = `http://20.226.8.137:8080/empresas/`;
+    // http://20.226.8.137:8080/empresas/ || 
+    let url = `/empresas/`;
     let data = {
       nome: nome,
       endereco: endereco,

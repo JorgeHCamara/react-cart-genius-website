@@ -32,7 +32,8 @@ const CompaniesAddProduct = () => {
   const [csvExampleModalIsOpen, setCsvExampleModalIsOpen] = useState(false);
 
   const register = async () => {
-    let url = `http://20.226.8.137:8080/empresas/${companyId}/produtos/cadastro`;
+    // http://20.226.8.137:8080/empresas/${companyId}/produtos/cadastro || 
+    let url = `/empresas/${companyId}/produtos/cadastro`;
     let data = {
       nome: nome,
       descricao: descricao,
