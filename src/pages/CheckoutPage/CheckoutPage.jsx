@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Menu from "../../components/Menu/Menu";
 import './CheckoutPage.css';
 import VisaLogo from '../../assets/images/visa.png';
@@ -15,6 +15,7 @@ const CheckoutPage = () => {
     const [selectedInstallment, setSelectedInstallment] = useState('');
 
     const location = useLocation();
+    const userId = localStorage.getItem('userId');
     const totalPrice = location.state ? location.state.total : 0;
 
     const [cardType, setCardType] = useState('');
@@ -145,6 +146,7 @@ const CheckoutPage = () => {
                 </select>
                 <p className="total-checkout">Total: R$ {totalPrice.toFixed(2)}</p>
                 <button className="buy-button" disabled={isButtonDisabled}>Comprar</button>
+                <Link to={`/user-page/${userId}/chat`} className="back-link">Voltar ao chat</Link>
             </div>
         </>
     );
