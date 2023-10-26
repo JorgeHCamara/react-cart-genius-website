@@ -80,7 +80,7 @@ const ChatPage = () => {
     };
 
     const handleCheckout = () => {
-        navigate(`/user-page/${userId}/chat/checkout`, { state: { total } });
+        navigate(`/user-page/${userId}/chat/checkout`, { state: { total, cartItems } });
     }
 
     function isUrl(str) {

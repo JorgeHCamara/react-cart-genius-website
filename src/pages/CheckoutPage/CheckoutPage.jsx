@@ -5,6 +5,7 @@ import './CheckoutPage.css';
 import VisaLogo from '../../assets/images/visa.png';
 import MasterCardLogo from '../../assets/images/mastercard.png'
 import BlankCard from '../../assets/images/blank-card.png'
+import axios from 'axios';
 
 const CheckoutPage = () => {
     const [cardNumber, setCardNumber] = useState('');
@@ -16,6 +17,7 @@ const CheckoutPage = () => {
 
     const location = useLocation();
     const userId = localStorage.getItem('userId');
+    const cartItems = location.state ? location.state.cartItems : [];
     const totalPrice = location.state ? location.state.total : 0;
 
     const [cardType, setCardType] = useState('');
@@ -57,6 +59,38 @@ const CheckoutPage = () => {
         // Certifique-se de que o valor tenha no máximo 19 caracteres (16 dígitos + 3 espaços)
         if (value.length <= 19) {
             setCardNumber(value);
+        }
+    };
+
+    const createOrderObject = () => {
+        return {
+            "produtos": cartItems.map(item => ({
+                "idProduto": item.ProdutoId,
+                "empresaId": item.Empresa,
+                "quantidade": 1,
+                "preco": item.Preco,
+                "comissao": item.Preco * 0.0029
+            })),
+            "parcelado": selectedInstallment > 1,
+            "numeroParcelas": selectedInstallment,
+            "valorParcela": (totalPrice / selectedInstallment).toFixed(2),
+            "totalVenda": totalPrice,
+            "comissao": totalPrice * 0.0029,
+            "clienteId": userId
+        };
+    };
+    
+    const handlePurchase = async () => {
+        const order = createOrderObject();
+
+        console.log("Objeto enviado para a API:", order);     
+        try {
+            const response = await axios.post('http://20.226.8.137:8080/vendas/', order, {
+                timeout: 60000
+            });
+            window.alert("Compra realizada com sucesso!");
+        } catch (error) {
+            console.error("Erro ao realizar a compra:", error);
         }
     };
 
@@ -145,7 +179,7 @@ const CheckoutPage = () => {
                     ))}
                 </select>
                 <p className="total-checkout">Total: R$ {totalPrice.toFixed(2)}</p>
-                <button className="buy-button" disabled={isButtonDisabled}>Comprar</button>
+                <button className="buy-button" disabled={isButtonDisabled} onClick={handlePurchase}>Comprar</button>
                 <Link to={`/user-page/${userId}/chat`} className="back-link">Voltar ao chat</Link>
             </div>
         </>
