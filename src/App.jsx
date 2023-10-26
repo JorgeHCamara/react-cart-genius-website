@@ -6,6 +6,7 @@ import UserPage from './pages/UserPage/UserPage';
 import ChatPage from './pages/ChatPage/ChatPage';
 import { AuthProvider } from './components/AuthContext/AuthContext';
 import Home from './pages/Home/Home'
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 import CompaniesLogin from './pages/CompaniesLogin/CompaniesLogin'
 import CompaniesCreateAccount from './pages/CompaniesCreateAccount/CompaniesCreateAccount'
 import CompaniesPage from './pages/CompaniesPage/CompaniesPage'
@@ -22,6 +23,7 @@ function App() {
           <Route path="/create-account" element={<CreateAccount />} />
           <Route path="/user-page/:userId" element={<UserPage />} />
           <Route path="/user-page/:userId/chat" element={<ChatPage />} />
+          <Route path="/user-page/:userId/chat/checkout" element={<CheckoutPage />} />
           <Route path="/companies" element={<CompaniesLogin />} />
           <Route path="/companies-create-account" element={<CompaniesCreateAccount />} />
           <Route path="/companies-page/:companyId" element={<CompaniesPage />} />

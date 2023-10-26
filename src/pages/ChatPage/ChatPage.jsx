@@ -5,6 +5,7 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import AnimatedResponse from '../../widgets/AnimatedResponse';
 import SpeechToText from '../../components/SpeechToText/SpeechToText';
 import Menu from '../../components/Menu/Menu';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ChatPage = () => {
     const [userInput, setUserInput] = useState('');
@@ -15,6 +16,9 @@ const ChatPage = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [cartItems, setCartItems] = useState([]);
     const [total, setTotal] = useState(0);
+    
+    const navigate = useNavigate();
+    const { userId } = useParams();
 
     const { isListening, startListening, stopListening } = SpeechToText({ setUserInput });
 
@@ -75,6 +79,10 @@ const ChatPage = () => {
         }
     };
 
+    const handleCheckout = () => {
+        navigate(`/user-page/${userId}/chat/checkout`, { state: { total } });
+    }
+
     function isUrl(str) {
         try {
             new URL(str);
@@ -105,7 +113,7 @@ const ChatPage = () => {
                 </div>
                 <div className="cart-footer">
                     <p className="cart-total">Total: R$ {total.toFixed(2)}</p>
-                    <button className="checkout-button" disabled={cartItems.length === 0}>
+                    <button className="checkout-button" disabled={cartItems.length === 0} onClick={handleCheckout}>
                         Finalizar compra
                     </button>
                 </div>
