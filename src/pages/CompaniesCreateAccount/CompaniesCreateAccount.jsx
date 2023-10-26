@@ -60,9 +60,9 @@ const CompaniesCreateAccount = () => {
     }
   };
 
-  const continueToLogin = () => {
+  const continueToLoginCompanies = () => {
     setModalIsOpen(false);
-    window.location.href = '/login';
+    window.location.href = '/companies';
   };
 
   const allFieldsFilled = () => {
@@ -143,7 +143,7 @@ const CompaniesCreateAccount = () => {
             Seu cadastro foi realizado com sucesso. Clique em Continuar para ser redirecionado a página de login.
           </div>
           <div className="modal-footer">
-            <button className="button button-text button-hover" onClick={continueToLogin}>Continuar</button>
+            <button className="button button-text button-hover" onClick={continueToLoginCompanies}>Continuar</button>
           </div>
         </ReactModal>
       </div>
