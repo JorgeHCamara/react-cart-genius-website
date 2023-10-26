@@ -20,7 +20,7 @@ const CompaniesLogin = () => {
     const login = async () => {
         try {
           // http://20.226.8.137:8080/empresas/login || /empresas/login
-          const response = await axios.post(`/empresas/login/`, {
+          const response = await axios.post(`/empresas/login`, {
             email: email,
             senha: senha,
           });
