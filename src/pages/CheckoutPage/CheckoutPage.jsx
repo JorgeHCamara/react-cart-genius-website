@@ -121,7 +121,7 @@ const CheckoutPage = () => {
                         </div>
                     </div>
                 </div>
-                <h2>Informações do Cartão</h2>
+                <h2 className='checkoutPageCardInfoTitle'>Informações do Cartão</h2>
 
                 <input 
                     type="text" 
