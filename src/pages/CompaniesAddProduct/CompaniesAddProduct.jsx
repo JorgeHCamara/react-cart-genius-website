@@ -91,8 +91,8 @@ const CompaniesAddProduct = () => {
 
                 // Envio para a API
                 for (const data of transformedData) {
-                    try { // /empresas/:companyId/produtos/cadastro* | http://20.226.8.137:8080/empresas/${companyId}/produtos/cadastro
-                        const url = `/empresas/:companyId/produtos/cadastro*`;
+                    try { // /empresas/:companyId/produtos/cadastro | http://20.226.8.137:8080/empresas/${companyId}/produtos/cadastro
+                        const url = `/empresas/:companyId/produtos/cadastro`;
                         const response = await axios.post(url, data);
                         console.log("Data sent successfully:", response);
                     } catch (error) {

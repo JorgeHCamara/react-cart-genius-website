@@ -5,6 +5,6 @@
 /vendas/*  http://20.226.8.137:8080/vendas/:splat  200
 /empresas/login  http://20.226.8.137:8080/empresas/login  200
 /empresas/*  http://20.226.8.137:8080/empresas/:splat  200
-/empresas/:companyId/produtos/cadastro*  http://20.226.8.137:8080/empresas/:companyId/produtos/cadastro/:splat  200
+/empresas/:companyId/produtos/cadastro  http://20.226.8.137:8080/empresas/:companyId/produtos/cadastro  200
 
 /*    /index.html   200
