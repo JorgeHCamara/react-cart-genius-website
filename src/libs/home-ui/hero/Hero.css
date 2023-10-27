@@ -58,6 +58,10 @@
 
     .heroText {
         width: 60%;
+        gap: 55px;
+    }
+
+    .heroText h2 {
         text-align: center;
     }
 
@@ -79,6 +83,10 @@
 
     .heroImage img {
         width: 80%;
+    }
+
+    .heroButtonDiv {
+        margin-top: 0px;
     }
 }
 

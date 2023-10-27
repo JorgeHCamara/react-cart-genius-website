@@ -90,3 +90,9 @@
     }
 
 }
+
+@media (max-width: 1257px) {
+    .benefitsContainer {
+        gap: 20px;
+    }
+}
