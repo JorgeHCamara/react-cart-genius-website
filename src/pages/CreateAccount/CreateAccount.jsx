@@ -4,6 +4,7 @@ import axios from 'axios';
 import ReactModal from 'react-modal';
 import './CreateAccount.css'
 import Menu from '../../components/Menu/Menu';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const CreateAccount = () => {
 
@@ -16,6 +17,8 @@ const CreateAccount = () => {
 
   const [emailError, setEmailError] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -30,6 +33,9 @@ const CreateAccount = () => {
   }, [email, telefone, emailTouched]);
 
   const register = async () => {
+
+    setLoading(true);
+
     // http://20.226.8.137:8080/clientes/ || /clientes/
     let url = `/clientes/`;
     let data = {
@@ -49,6 +55,8 @@ const CreateAccount = () => {
       console.log(url);
       console.log(data);
       window.alert('Deu algum problema ao criar a conta.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -118,6 +126,7 @@ const CreateAccount = () => {
           onChange={(e) => setSenha(e.target.value)}
           type="password"
         />
+        {loading && <LoadingSpinner />}
         <button className="button button-hover" onClick={register} disabled={!allFieldsFilled()}>
           <span className='button-text'>Criar conta</span>
         </button>

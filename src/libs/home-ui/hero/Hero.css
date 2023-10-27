@@ -2,13 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 14rem;
+    gap: 9rem;
     cursor: default;
 }
 
 .heroText {
-    width: 30%;
-    font-size: 26px;
+    width: 40%;
+    font-size: 28px;
     color: #FFF;
     animation: fadeInLeft 1.5s forwards;
     display: flex;

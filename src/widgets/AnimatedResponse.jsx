@@ -19,7 +19,7 @@ const AnimatedResponse = ({ message, isImageUrl, onImageClick }) => {
         setDisplayedMessage(message.slice(0, currentIndex + 1));
         setCurrentIndex(currentIndex + 1);
       }
-    }, 20); // Adjust the delay (in milliseconds) between each letter
+    }, 10); // Adjust the delay (in milliseconds) between each letter
 
     return () => clearInterval(intervalId);
   }, [message, currentIndex, isImageUrl]);
@@ -35,7 +35,7 @@ const AnimatedResponse = ({ message, isImageUrl, onImageClick }) => {
           onClick={() => onImageClick(message)}
         />
       ) : (
-        <p>{displayedMessage}</p>
+        <p style={{display: 'inline'}}>{displayedMessage}</p>
       )}
     </div>
   )

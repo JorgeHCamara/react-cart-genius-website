@@ -4,13 +4,18 @@ import axios from 'axios';
 import './Login.css'
 import logoImage from '../../assets/images/logo.jpeg';
 import Menu from '../../components/Menu/Menu';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const login = async () => {
+
+        setLoading(true);
+
         try {
           // /clientes/login || http://20.226.8.137:8080/clientes/login
           const response = await axios.post(`/clientes/login`, {
@@ -24,7 +29,7 @@ const Login = () => {
 
           console.log('Login realizado com sucesso!');
 
-          const token = response.data.token; // Supondo que o token está na resposta do servidor
+          const token = response.data.token;
           localStorage.setItem('token', token);
 
           const userId = response.data.id;
@@ -33,13 +38,15 @@ const Login = () => {
               navigate(`/user-page/${userId}`);
             } else {
               console.error('ID do Usuário não encontrado');
-              navigate('/user-page'); // Redireciona para uma página padrão (opcional)
+              navigate('/user-page');
             }
     
         } catch (error) {
-          // Handle login error.
+          window.alert('Deu algum problema ao entrar na sua conta.');
           console.error('Error logging in:', error);
           console.log('ERRO DE LOGIN');
+        } finally {
+          setLoading(false);
         }
       };
 
@@ -63,6 +70,7 @@ const Login = () => {
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
           />
+          {loading && <LoadingSpinner />}
           <button className="button" onClick={login}>
           <span className='button-text'>Entrar</span>
           </button>

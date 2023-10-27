@@ -43,7 +43,6 @@ const ChatPage = () => {
         
             let geniusMessage;
             if (response.data.Nome) {
-                // Se a resposta é um objeto de produto, adicione-a ao carrinho
                 setCartItems(prevItems => [...prevItems, response.data]);
                 setTotal(prevTotal => prevTotal + parseFloat(response.data.Preco));
                 
