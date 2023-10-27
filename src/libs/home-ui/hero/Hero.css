@@ -16,6 +16,10 @@
     gap: 70px;
 }
 
+.heroText h2 {
+    text-align: left;
+}
+
 .heroButtonDiv {
     margin-top: 10px;
 }

@@ -1,141 +1,173 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    margin-top: 40px;
+.container-login {
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+  min-height: 600px;
+  width: 900px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
 }
 
-.logo {
-    width: 300px;
-    height: 300px;
-    object-fit: contain;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+.login-left, .login-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
 }
 
-.title {
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #FFF;
+.login-left {
+  background-color: #ffffff;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  z-index: 2;
 }
 
-.input {
-    width: 30%;
-    max-width: 80rem;
-    height: 40px;
-    border-color: gray;
-    border-width: 1px;
-    padding-left: 8px;
-    padding-right: 8px;
-    margin-bottom: 20px;
+.login-right {
+  background: linear-gradient(to right, #822760 , #79355e );
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  text-align: center;
+  z-index: 1;
 }
 
-.button {
-    background-color: #00072E;
-    padding: 20px 0;
-    border-radius: 4px;
-    margin-top: 25px;
-    border: 1px solid #FFF;
-    min-width: 300px;
+.login-right p {
+  font-size: 20px;
+  letter-spacing: 0.3px;
 }
 
-.button:hover {
-    cursor: pointer;
+.title-login, h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-.label {
-    color: #FFF;
-    font-size: 14px;
-    font-weight: bold;
-    align-self: flex-start;
-    margin-left: 35%;
-    margin-bottom: 5px;
+.input-login {
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: #eee;
+  padding: 5px 5px 5px 15px;
+  margin-bottom: 20px;
 }
 
-.button-text {
-    color: #FFF;
-    font-weight: bold;
-    font-size: 18px;
-    text-align: center;
+.button-login {
+  background-color: #822760;
+  padding: 15px 0;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  width: 70%;
+  margin: 20px auto;
+  display: block;
 }
 
 .forgot-password {
-    color: #B3B3B3;
-    font-size: 18px;
-    margin-top: 20px;
+  text-align: center;
 }
 
-.create-account {
-    color: #B3B3B3;
-    font-size: 18px;
-    margin-top: 10px;
-}
-
-.hereLink {
-    color: #FFF;
+.signup-btn {
+  background-color: #ffffff;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 50px;
+  color: #190C2A; /* cor ajustável conforme necessário */
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  margin: 30px auto 0 auto;
+  display: block;
+  text-decoration: none;
 }
 
 @media (max-width: 768px) {
-    .container {
-      padding: 10px; 
-      margin-top: 20px;
-      text-align: center; 
-    }
-  
-    .logo {
-      width: 80%; 
-      height: auto; 
-      margin-bottom: 10px;
-      border-radius: 50%;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    }
-  
-    .title {
-      font-size: 30px; 
-      margin-bottom: 20px;
-    }
-  
-    .input {
-      width: 80%; 
-      height: 40px;
-      border-color: gray;
-      border-width: 1px;
-      padding-left: 8px;
-      padding-right: 8px;
-      margin-bottom: 20px;
-    }
-  
-    .label {
-      color: #FFF;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 5px;
-      margin-left: 10%;
-    }
-  
-    .button {
-      padding: 15px 0; 
-      border-radius: 4px;
-      margin-top: 25px;
-      border: 1px solid #FFF;
-      min-width: 80%; 
-    }
-  
-    .forgot-password {
-      font-size: 16px; 
-      margin-top: 20px;
-    }
-  
-    .create-account {
-      font-size: 16px; 
-      margin-top: 10px;
-    }
-  
-    .hereLink {
-      color: #FFF;
-    }
+  .container-login {
+    width: 90%;
+    min-height: auto;
+    flex-direction: column;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+    gap: 1.875rem;
+    background-color: transparent;
   }
+
+  .login-left, .login-right {
+    flex: none;
+    width: 100%;
+    padding: 20px;
+    border-radius: 0px;
+  }
+
+  .login-right p {
+    font-size: 18px;
+  }
+
+  .title-login, h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .input-login {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .button-login {
+    width: 90%;
+    padding: 10px 0;
+    margin: 15px auto;
+  }
+
+  .signup-btn {
+    width: 90%;
+    padding: 10px 30px;
+    margin: 20px auto 0 auto;
+    max-width: 300px;
+  }
+
+  .container {
+    padding: 10px; 
+    margin-top: 10px;
+  }
+
+  .logo {
+    width: 80%; 
+  }
+
+  .title {
+    font-size: 24px; 
+    margin-bottom: 15px;
+  }
+
+  .input {
+    width: 90%; 
+  }
+
+  .label {
+    margin-left: 5%;
+  }
+
+  .button {
+    min-width: 90%; 
+  }
+
+  .forgot-password {
+    font-size: 14px; 
+    margin-top: 15px;
+  }
+
+  .create-account {
+    font-size: 14px; 
+    margin-top: 5px;
+  }
+}

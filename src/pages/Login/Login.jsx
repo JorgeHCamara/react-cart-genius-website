@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css'
-import logoImage from '../../assets/images/logo.jpeg';
 import Menu from '../../components/Menu/Menu';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
@@ -50,36 +49,43 @@ const Login = () => {
         }
       };
 
-    return (
-      <>
-      <Menu />
-      <div className='container'>
-          <img src={logoImage} alt="Logo" className="logo" />
-          <h1 className="title">Cart Genius</h1>
-          <label className="label">E-mail</label>
-          <input
-          className="input"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          />
-          <label className="label">Senha</label>
-          <input
-          className="input"
-          type="password"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          />
-          {loading && <LoadingSpinner />}
-          <button className="button" onClick={login}>
-          <span className='button-text'>Entrar</span>
-          </button>
-          <p className="forgot-password">Esqueceu sua senha?</p>
-          <p className="create-account">
-          Não tem uma conta? <Link className='hereLink' to="/create-account">Crie uma aqui</Link>.
-          </p>
-      </div>
-      </>
+      return (
+        <>
+        <Menu />
+        <div className="container-login">
+            <div className='login-left'>
+                <h2>Entrar</h2>
+                <div className="login-form">
+                    <input
+                    className="input-login"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder='Email'
+                    />
+                    <input
+                    className="input-login"
+                    type="password"
+                    value={senha}
+                    onChange={(e) => setSenha(e.target.value)}
+                    placeholder='Senha'
+                    />
+                    <p className="forgot-password">Esqueceu a senha?</p>
+                    <button className="button-login" onClick={login}>
+                        Entrar
+                    </button>
+                    {loading && <LoadingSpinner />}
+                </div>
+            </div>
+            
+            {/* Parte do Hello, Friend! */}
+            <div className='login-right'>
+                <h2>Não tem conta?</h2>
+                <p>Clique no botão abaixo e comece sua jornada no Cart Genius</p>
+                <Link className='signup-btn' to="/create-account">Criar nova conta</Link>
+            </div>
+        </div>
+        </>
     );
 };
 

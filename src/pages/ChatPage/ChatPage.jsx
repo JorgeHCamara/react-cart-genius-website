@@ -119,7 +119,7 @@ const ChatPage = () => {
             </div>
             <div className="container-chat">
                 <div className="firstView">
-                    <p className="responseText">
+                    <p className="responseText" style={{width: 900}}>
                         <strong>Cart Genius:</strong> Olá, como posso te ajudar?
                     </p>
                     {userConversation.map((userMessage, index) => (
