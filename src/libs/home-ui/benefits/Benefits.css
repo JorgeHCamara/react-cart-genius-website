@@ -1,0 +1,92 @@
+.benefitsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2rem 6.5rem;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    background-color: transparent;
+    cursor: default;
+}
+
+.benefitItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem;
+    width: 21.875rem;
+    height: 34.375rem;
+    text-align: center;
+    background-color: #190C2A;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation-name: fadeInUp;
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    opacity: 0;
+}
+
+.benefitIcon {
+    width: 250px;  
+    height: 250px; 
+    max-height: 250px;
+    margin-top: 1rem;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden; 
+}
+
+.benefitTitle {
+    font-size: 24px;
+    color: #FFF;
+    font-weight: bold;
+    max-height: 100px; 
+    overflow: hidden; 
+}
+
+.benefitDescription {
+    font-size: 20px;
+    color: #FFF;
+    max-height: 100px; 
+    overflow: hidden; 
+    width: 90%;
+    margin-bottom: 0.75rem;
+}
+
+.benefitButton {
+    padding: 12px 22px;
+    background-color: #FFF;
+    color: #190C2A;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    font-size: 20px;
+
+    &:hover {
+        background-color: rgba(255,255,255,0.8);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .benefitsContainer {
+        flex-direction: column;
+        padding: 0;
+        gap: 20px;
+    }
+
+}

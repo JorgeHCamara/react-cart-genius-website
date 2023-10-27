@@ -18,7 +18,9 @@ const Menu = () => {
     navigate('/#about');
   };
 
-  
+  const handleBenefitsClick = () => {
+    navigate('/#benefits');
+  };
 
   return (
     <nav className='menuStyle'>
@@ -35,6 +37,9 @@ const Menu = () => {
         </li> 
         <li className='menuItem'>
           <a className='menuLink' href='#about' onClick={handleAboutClick}>Sobre</a>
+        </li>
+        <li className='menuItem'>
+          <a className='menuLink' href='#benefits' onClick={handleBenefitsClick}>Benefícios</a>
         </li>
         {isLoggedIn ? (
           <li className='menuItem'>
