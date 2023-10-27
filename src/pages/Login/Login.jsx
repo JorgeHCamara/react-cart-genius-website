@@ -39,6 +39,11 @@ const Login = () => {
               console.error('ID do Usuário não encontrado');
               navigate('/user-page');
             }
+
+            const userName = response.data.nome; 
+            if (userName) {
+                localStorage.setItem('userName', userName);
+            }
     
         } catch (error) {
           window.alert('Deu algum problema ao entrar na sua conta.');
