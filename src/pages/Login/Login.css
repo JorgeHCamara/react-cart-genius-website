@@ -6,6 +6,7 @@
   width: 900px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   border-radius: 10px;
+  margin-bottom: 1.875rem;
 }
 
 .login-left, .login-right {
@@ -40,11 +41,15 @@
   letter-spacing: 0.3px;
 }
 
-.title-login, h2 {
+.login-left h2, .login-right h2 {
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 30px;
   text-align: center;
+}
+
+.login-right h2 {
+  margin-bottom: 20px;
 }
 
 .input-login {
@@ -112,7 +117,7 @@
     font-size: 18px;
   }
 
-  .title-login, h2 {
+  .title-left h2 {
     font-size: 28px;
     margin-bottom: 20px;
   }
