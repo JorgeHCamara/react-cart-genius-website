@@ -1,0 +1,26 @@
+.footer-container {
+    background-color: #161B22;
+    color: #fff;
+    padding: 24px 0 24px 40px;
+    text-align: left;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9rem;
+    margin-top: 80px;
+    cursor: default;
+}
+
+.footer-links {
+    margin-right: 20px;
+}
+
+.footer-spacing {
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+
+    }
+}

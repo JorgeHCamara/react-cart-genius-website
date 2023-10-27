@@ -3,6 +3,7 @@ import Hero from '../../libs/home-ui/hero/Hero';
 import Menu from '../../components/Menu/Menu'
 import About from '../../libs/home-ui/about/About';
 import Benefits from '../../libs/home-ui/benefits/Benefits';
+import Footer from '../../libs/shared-ui/footer/Footer';
 import { useEffect } from 'react'
 
 const Home = () => {
@@ -34,6 +35,7 @@ const Home = () => {
             <Hero  />
             <About />
             <Benefits />
+            <Footer />
         </div>
     );
 };
