@@ -35,7 +35,14 @@ const AnimatedResponse = ({ message, isImageUrl, onImageClick }) => {
           onClick={() => onImageClick(message)}
         />
       ) : (
-        <p style={{display: 'inline'}}>{displayedMessage}</p>
+        displayedMessage.includes('-') ? (
+          displayedMessage.split('-').map((item, idx) => (
+            item.trim() ? <p key={idx} style={{ display: 'block' }}>{item.trim()}</p> : null
+          ))
+        ) : (
+          <p style={{display: 'inline'}}>{displayedMessage}</p>
+        )
+        
       )}
     </div>
   )

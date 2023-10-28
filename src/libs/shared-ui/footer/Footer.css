@@ -20,7 +20,7 @@
 }
 
 @media (max-width: 768px) {
-    .footer-container {
-
+    .footer-links {
+        width: 85%;
     }
 }

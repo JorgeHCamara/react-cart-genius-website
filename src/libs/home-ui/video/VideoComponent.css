@@ -1,0 +1,44 @@
+.textVideoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-top: 100px;
+}
+
+.textContent {
+    width: 65%;
+    letter-spacing: 1px;
+}
+
+.textContent h2 {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    color: #FFF;
+    text-align: center;
+    font-weight: bold;
+}
+
+.textContent p {
+    font-size: 1.4rem;
+    text-align: center;
+    color: #FFF;
+}
+
+.videoContent {
+    text-align: center;
+}
+
+.videoContent video {
+    max-width: 70%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .textVideoContainer {
+        display: none;
+    }
+}
+
+

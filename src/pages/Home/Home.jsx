@@ -3,6 +3,7 @@ import Hero from '../../libs/home-ui/hero/Hero';
 import Menu from '../../components/Menu/Menu'
 import About from '../../libs/home-ui/about/About';
 import Benefits from '../../libs/home-ui/benefits/Benefits';
+import VideoComponent from '../../libs/home-ui/video/VideoComponent';
 import Footer from '../../libs/shared-ui/footer/Footer';
 import { useEffect } from 'react'
 
@@ -35,6 +36,7 @@ const Home = () => {
             <Hero  />
             <About />
             <Benefits />
+            <VideoComponent />
             <Footer />
         </div>
     );
