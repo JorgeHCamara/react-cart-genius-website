@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Menu from "../../components/Menu/Menu";
+import ReactModal from 'react-modal';
 import './CheckoutPage.css';
 import VisaLogo from '../../assets/images/visa.png';
 import MasterCardLogo from '../../assets/images/mastercard.png'
@@ -14,6 +15,8 @@ const CheckoutPage = () => {
     const [cvv, setCvv] = useState('');
     const [installments, setInstallments] = useState([]);
     const [selectedInstallment, setSelectedInstallment] = useState('');
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const location = useLocation();
     const userId = localStorage.getItem('userId');
@@ -79,6 +82,11 @@ const CheckoutPage = () => {
             "clienteId": userId
         };
     };
+
+    const continueAfterBuying = () => {
+        setModalIsOpen(false);
+        window.location.href = '/';
+    };
     
     const handlePurchase = async () => {
         const order = createOrderObject();
@@ -89,9 +97,11 @@ const CheckoutPage = () => {
             const response = await axios.post('/vendas/', order, {
                 timeout: 60000
             });
+            setModalIsOpen(true);
             window.alert("Compra realizada com sucesso!");
         } catch (error) {
             console.error("Erro ao realizar a compra:", error);
+            window.alert("Erro ao realizar a compra");
         }
     };
 
@@ -182,6 +192,24 @@ const CheckoutPage = () => {
                 <p className="total-checkout">Total: R$ {totalPrice.toFixed(2)}</p>
                 <button className="buy-button" disabled={isButtonDisabled} onClick={handlePurchase}>Comprar</button>
                 <Link to={`/user-page/${userId}/chat`} className="back-link">Voltar ao chat</Link>
+                <ReactModal
+                    ariaHideApp={false}
+                    isOpen={modalIsOpen}
+                    onRequestClose={() => setModalIsOpen(false)}
+                    contentLabel="Comppra realizada com sucesso!"
+                    overlayClassName="modal-overlay"
+                    className="modal-content"
+                    >
+                    <div className="modal-header">
+                        Compra realizada com sucesso!
+                    </div>
+                    <div className="modal-body">
+                        Sua compra foi realizada com sucesso. Clique em Continuar fechar esse aviso.
+                    </div>
+                    <div className="modal-footer">
+                        <button className="button button-text button-hover" onClick={continueAfterBuying}>Continuar</button>
+                    </div>
+                </ReactModal>
             </div>
         </>
     );
