@@ -69,13 +69,13 @@ const CheckoutPage = () => {
                 "empresaId": item.Empresa,
                 "quantidade": 1,
                 "preco": item.Preco,
-                "comissao": item.Preco * 0.0029
+                "comissao": item.Preco * 0.01
             })),
             "parcelado": selectedInstallment > 1,
             "numeroParcelas": selectedInstallment,
             "valorParcela": (totalPrice / selectedInstallment).toFixed(2),
             "totalVenda": totalPrice,
-            "comissao": totalPrice * 0.0029,
+            "comissao": totalPrice * 0.01,
             "clienteId": userId
         };
     };
