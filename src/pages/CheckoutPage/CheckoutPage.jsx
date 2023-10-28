@@ -101,7 +101,6 @@ const CheckoutPage = () => {
             window.alert("Compra realizada com sucesso!");
         } catch (error) {
             console.error("Erro ao realizar a compra:", error);
-            window.alert("Erro ao realizar a compra");
         }
     };
 
