@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CompaniesLogin.css'
 import logoImage from '../../assets/images/logo.jpeg';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const CompaniesLogin = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,6 +20,9 @@ const CompaniesLogin = () => {
     }, []);
 
     const login = async () => {
+
+      setLoading(true);
+
         try {
           // http://20.226.8.137:8080/empresas/login || /empresas/login
           const response = await axios.post(`/empresas/login`, {
@@ -42,6 +47,8 @@ const CompaniesLogin = () => {
           // Handle login error.
           console.error('Error logging in:', error);
           console.log('ERRO DE LOGIN');
+        } finally {
+          setLoading(false);
         }
       };
 
@@ -67,6 +74,7 @@ const CompaniesLogin = () => {
           <button className="CompaniesButton" onClick={login}>
           <span className='CompaniesButtonText'>Entrar</span>
           </button>
+          {loading && <LoadingSpinner />}
           <p className="CompaniesForgotPassword">Esqueceu sua senha?</p>
           <p className="CompaniesCreateAccountLink">
           Não tem uma conta? <Link className='CompaniesHereLink' to="/companies-create-account">Crie uma aqui</Link>.

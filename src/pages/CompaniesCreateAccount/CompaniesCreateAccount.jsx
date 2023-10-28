@@ -4,6 +4,7 @@ import axios from 'axios';
 import ReactModal from 'react-modal';
 import './CompaniesCreateAccount.css'
 import Menu from '../../components/Menu/Menu';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const CompaniesCreateAccount = () => {
 
@@ -26,6 +27,7 @@ const CompaniesCreateAccount = () => {
   const [emailTouched, setEmailTouched] = useState(false);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const emailRegex = /\S+@\S+\.\S+/;
@@ -38,7 +40,10 @@ const CompaniesCreateAccount = () => {
   }, [email, telefone, emailTouched]);
 
   const register = async () => {
-    // http://20.226.8.137:8080/empresas/ || 
+
+    setLoading(true);
+
+    // http://20.226.8.137:8080/empresas/ || /empresas/
     let url = `/empresas/`;
     let data = {
       nome: nome,
@@ -57,6 +62,8 @@ const CompaniesCreateAccount = () => {
       console.log(url);
       console.log(data);
       window.alert('Deu algum problema ao criar a conta.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -128,6 +135,7 @@ const CompaniesCreateAccount = () => {
         <button className="button button-hover" onClick={register} disabled={!allFieldsFilled()}>
           <span className='button-text'>Criar conta</span>
         </button>
+        {loading && <LoadingSpinner />}
         <ReactModal
           ariaHideApp={false}
           isOpen={modalIsOpen}
